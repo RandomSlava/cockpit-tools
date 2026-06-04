@@ -843,11 +843,12 @@ async fn import_from_local_state_db_logic() -> Result<models::Account, String> {
 pub async fn import_from_json_logic(json_content: String) -> Result<Vec<models::Account>, String> {
     modules::logger::log_info("开始从 JSON 导入账号...");
 
-    // 简化格式: [{"email": "xxx", "refresh_token": "..."}]
+    // 简化格式: [{"email": "xxx", "refresh_token": "...", "proxy_url": "..."}]
     #[derive(serde::Deserialize)]
     struct SimpleAccount {
         email: String,
         refresh_token: String,
+        proxy_url: Option<String>,
     }
 
     // 尝试解析为简化格式数组
@@ -877,7 +878,11 @@ pub async fn import_from_json_logic(json_content: String) -> Result<Vec<models::
                     );
 
                     match modules::upsert_account(simple.email.clone(), None, token) {
-                        Ok(new_account) => {
+                        Ok(mut new_account) => {
+                            if let Some(proxy) = simple.proxy_url {
+                                new_account.proxy_url = Some(proxy);
+                                let _ = modules::account::save_account(&new_account);
+                            }
                             modules::logger::log_info(&format!(
                                 "导入账号成功: {}",
                                 new_account.email
@@ -915,7 +920,11 @@ pub async fn import_from_json_logic(json_content: String) -> Result<Vec<models::
             old_account.name.clone(),
             old_account.token.clone(),
         ) {
-            Ok(new_account) => {
+            Ok(mut new_account) => {
+                if let Some(proxy) = old_account.proxy_url {
+                    new_account.proxy_url = Some(proxy);
+                    let _ = modules::account::save_account(&new_account);
+                }
                 modules::logger::log_info(&format!("导入账号: {}", new_account.email));
                 imported.push(new_account);
             }

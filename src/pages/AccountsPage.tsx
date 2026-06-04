@@ -2081,11 +2081,12 @@ export function AccountsPage({ onNavigate }: AccountsPageProps) {
     setShowTagModal(accountId);
   };
 
-  const handleSaveTags = async (tags: string[], notes?: string) => {
+  const handleSaveTags = async (tags: string[], notes?: string, proxy?: string) => {
     if (!showTagModal) return;
     const scrollY = window.scrollY
     const accountId = showTagModal
     await accountService.updateAccountNotes(accountId, notes ?? '')
+    await accountService.updateAccountProxy(accountId, proxy ?? null)
     await updateAccountTags(accountId, tags);
     setShowTagModal(null);
     window.requestAnimationFrame(() => {
@@ -4641,6 +4642,7 @@ export function AccountsPage({ onNavigate }: AccountsPageProps) {
         isOpen={!!showTagModal}
         initialTags={accounts.find((acc) => acc.id === showTagModal)?.tags || []}
         initialNotes={accounts.find((acc) => acc.id === showTagModal)?.notes ?? ''}
+        initialProxy={accounts.find((acc) => acc.id === showTagModal)?.proxy_url ?? ''}
         availableTags={availableTags}
         onClose={() => setShowTagModal(null)}
         onSave={handleSaveTags}

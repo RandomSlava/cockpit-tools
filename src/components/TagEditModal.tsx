@@ -9,9 +9,10 @@ interface TagEditModalProps {
   isOpen: boolean;
   initialTags: string[];
   initialNotes?: string;
+  initialProxy?: string;
   availableTags?: string[];
   onClose: () => void;
-  onSave: (tags: string[], notes?: string) => void | Promise<void>;
+  onSave: (tags: string[], notes?: string, proxy?: string) => void | Promise<void>;
 }
 
 const MAX_TAGS = 10;
@@ -33,11 +34,12 @@ const normalizeTagList = (tags: string[]) => {
   return result;
 };
 
-export const TagEditModal = ({ isOpen, initialTags, initialNotes, availableTags = [], onClose, onSave }: TagEditModalProps) => {
+export const TagEditModal = ({ isOpen, initialTags, initialNotes, initialProxy, availableTags = [], onClose, onSave }: TagEditModalProps) => {
   const { t } = useTranslation();
   useEscClose(isOpen, onClose);
   const [tags, setTags] = useState<string[]>([]);
   const [notes, setNotes] = useState('');
+  const [proxy, setProxy] = useState('');
   const [inputValue, setInputValue] = useState('');
   const [error, setError] = useState<string>('');
   const [saving, setSaving] = useState(false);
@@ -47,10 +49,11 @@ export const TagEditModal = ({ isOpen, initialTags, initialNotes, availableTags 
     if (!isOpen) return;
     setTags(normalizeTagList(initialTags));
     setNotes(initialNotes ?? '');
+    setProxy(initialProxy ?? '');
     setInputValue('');
     setError('');
     setGlobalRenamingTag(null);
-  }, [initialNotes, initialTags, isOpen]);
+  }, [initialNotes, initialTags, initialProxy, isOpen]);
 
   const remaining = useMemo(() => MAX_TAGS - tags.length, [tags.length]);
   const normalizedAvailableTags = useMemo(() => normalizeTagList(availableTags), [availableTags]);
@@ -136,7 +139,7 @@ export const TagEditModal = ({ isOpen, initialTags, initialNotes, availableTags 
     }
     setSaving(true);
     try {
-      await onSave(nextTags, notes.trim());
+      await onSave(nextTags, notes.trim(), proxy.trim());
       onClose();
     } finally {
       setSaving(false);
@@ -226,6 +229,29 @@ export const TagEditModal = ({ isOpen, initialTags, initialNotes, availableTags 
               />
             </div>
           )}
+          <div className="tag-notes-section">
+            <div className="tag-notes-header">
+              <span className="tag-notes-label">{t('accounts.tagModal.proxyLabel', 'Account Proxy')}</span>
+            </div>
+            <input
+              type="text"
+              style={{
+                padding: '10px 12px',
+                borderRadius: '12px',
+                border: '1px solid rgba(148, 163, 184, 0.4)',
+                background: 'var(--bg-card)',
+                color: 'var(--text-primary)',
+                fontSize: '13px',
+                outline: 'none',
+              }}
+              value={proxy}
+              onChange={(e) => setProxy(e.target.value)}
+              placeholder={t('accounts.tagModal.proxyPlaceholder', 'E.g. 209.127.19.151:8000:user:pass or http://...')}
+            />
+            <div className="tag-edit-hint" style={{ marginTop: '-4px' }}>
+              {t('accounts.tagModal.proxyHint', 'Individual proxy for this account. Will be used instead of the global proxy when launching the IDE.')}
+            </div>
+          </div>
           <div className="tag-list">
             {tags.length === 0 ? (
               <div className="tag-empty">{t('accounts.tagModal.empty', '暂无标签')}</div>

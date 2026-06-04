@@ -171,6 +171,10 @@ export async function updateAccountNotes(accountId: string, notes: string): Prom
     return await invoke('update_account_notes', { accountId, notes });
 }
 
+export async function updateAccountProxy(accountId: string, proxyUrl: string | null): Promise<Account> {
+    return await invoke('update_account_proxy', { accountId, proxyUrl });
+}
+
 export async function syncFromExtension(): Promise<number> {
     return await invoke('sync_from_extension');
 }

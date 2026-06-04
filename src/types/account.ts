@@ -12,6 +12,7 @@ export interface Account {
     disabled_reason?: string;
     disabled_at?: number;
     protected_models?: string[];
+    proxy_url?: string;
     created_at: number;
     last_used: number;
 }

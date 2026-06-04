@@ -225,7 +225,13 @@
     "deleteTagWarning": "Opravdu chcete odstranit tento štítek ze všech účtů?",
     "expand": "Rozbalit",
     "processing": "Zpracovávám...",
-    "selectAll": "Vybrat vše"
+    "selectAll": "Vybrat vše",
+    "back": "Zpět",
+    "edit": "Upravit",
+    "noData": "Údaje nejsou k dispozici",
+    "search": "Hledat...",
+    "status": "Stav",
+    "syncing": "Synchronizování..."
   },
   "nav": {
     "overview": "Antigravity IDE",
@@ -759,7 +765,12 @@
       "codexAppSpeedFast": "Rychlá",
       "codexAppSpeedLaunch": "Restartovat Codex",
       "codexAppSpeedSaveFailed": "Nepodařilo se uložit rychlost Codexu: {{error}}",
-      "codexAppSpeedLaunchFailed": "Nepodařilo se restartovat Codex: {{error}}"
+      "codexAppSpeedLaunchFailed": "Nepodařilo se restartovat Codex: {{error}}",
+      "account": "Vyúčtování",
+      "accountLevelRefreshDisabled": "Invalidé",
+      "accountLevelRefreshInherit": "Zdědit nastavení platformy",
+      "accountLevelRefreshSummary": "Rozbalit konfiguraci",
+      "accountLevelRefreshTitle": "Konfigurace obnovení na úrovni účtu"
     },
     "network": {
       "apiTitle": "Antigravity Cockpit API",
@@ -945,7 +956,9 @@
     "title": "Správa účtů",
     "subtitle": "Spravujte svůj seznam účtů Antigravity IDE.",
     "total": "Počet účtů: {{count}}",
-    "search": "Hledat účty...",
+    "search": {
+      "placeholder": "Hledat všechny účty"
+    },
     "addAccount": "Přidat účet",
     "refreshAll": "Obnovit vše",
     "export": "Exportovat",
@@ -1035,7 +1048,16 @@
         "tooMany": "Můžete přidat až {{max}} štítků"
       },
       "notesLabel": "Poznámka",
-      "notesPlaceholder": "Zadejte poznámku. Ponechte prázdné pro vymazání"
+      "notesPlaceholder": "Zadejte poznámku. Ponechte prázdné pro vymazání",
+      "proxyLabel": "Proxy účet",
+      "proxyPlaceholder": "Např. 209.127.19.151:8000:user:pass nebo http://...",
+      "proxyHint": "Individuální proxy pro tento účet. Při spouštění IDE bude použito místo globálního serveru proxy.",
+      "addHint": "Přidejte kliknutím",
+      "editHint": "Klikněte pro úpravu",
+      "globalDeleteHint": "Smazat tuto značku globálně",
+      "globalRenameHint": "Přejmenovat tuto značku globálně",
+      "renamePlaceholder": "Zadejte nový název:",
+      "renamingGlobal": "Globální přejmenování všech existujících záznamů štítků:"
     },
     "groupByTag": "Seskupit podle štítku",
     "untagged": "Bez štítku",
@@ -2559,7 +2581,8 @@
         "partialDetected": "Aktuálně je nastaveno pouze jedno spravované pole: model_context_window={{context}}, model_auto_compact_token_limit={{compact}}. Uložením se přepíší obě pole podle aktuálního schématu.",
         "notSet": "Nenastaveno"
       },
-      "managePresets": "Předvolby modelů"
+      "managePresets": "Předvolby modelů",
+      "noMatchTitle": "Žádní odpovídající poskytovatelé"
     },
     "quickSwitch": {
       "action": "Rychle přepnout poskytovatele",
@@ -2805,6 +2828,11 @@
         "saveSuccess": "Blokace modelů účtu uložena",
         "cardCount": "{{count}} blok."
       }
+    },
+    "cli": {
+      "launchSuccess": "Codex CLI úspěšně spuštěn",
+      "quickLaunch": "Snadné spuštění",
+      "selectWorkingDir": "Vyberte pracovní adresář Codex CLI"
     }
   },
   "githubCopilot": {
@@ -3069,6 +3097,10 @@
       "title": "Paměť filtrů",
       "enable": "Pamatovat filtry přehledu účtů (bez vyhledávání)",
       "hint": "Ve výchozím stavu vypnuto. Po zapnutí se pro každou platformu uloží filtry, štítky a řazení."
+    },
+    "codexWindow": {
+      "orDivider": "Nebo (spuštěno, pokud se shoduje)",
+      "primaryWindowMeaning": "primary_window obecně odkazuje na 5hodinovou kvótu; pro bezplatné uživatele může primary_window odpovídat týdenní kvótě, která se může lišit podle předplatného."
     }
   },
   "quotaAlert": {
@@ -3202,7 +3234,8 @@
     "account": {
       "signedInWith": "Přihlášen pomocí {{provider}}",
       "providerUnknown": "Neznámý",
-      "userId": "ID uživatele"
+      "userId": "ID uživatele",
+      "signedInWithUnknown": "Přihlášen s neznámým"
     },
     "credits": {
       "estimatedResetOn": "Odhadované využití se resetuje na {{date}}",
@@ -3805,6 +3838,13 @@
     },
     "quota": {
       "usedOfTotal": "{{used}} / {{total}}"
+    },
+    "quotaCategory": {
+      "activity": "Promo balíček",
+      "base": "Základní balíček",
+      "empty": "Žádné údaje o kvótách",
+      "extra": "Balíček navíc",
+      "other": "Ostatní"
     }
   },
   "qoder": {
@@ -3889,6 +3929,9 @@
       "desc": "Podporuje oficialni prihlaseni OAuth, mistni import, import JSON a prepinani uctu pomoci lokalni injekce. Pri prepnuti zapisuje data podle skutecnych pravidel klienta Trae.",
       "permission": "Rozsah opravneni: cte a zapisuje prihlasovaci pole v mistnim souboru Trae storage.json pro import uctu, injekci prepnuti uctu a zobrazeni tarifu. Vsechna data se zpracovavaji pouze lokalne na vasem zarizeni.",
       "network": "Sitovy rozsah: prihlaseni OAuth, obnoveni tokenu a dotazy na tarif volaji oficialni API Trae. Mistni soubory uctu ani puvodni obsah uloziste se neodesilaji sluzbam tretich stran."
+    },
+    "columns": {
+      "usage": "Použití"
     }
   },
   "codebuddyCn": {
@@ -4259,5 +4302,9 @@
     "copyCode": "Kopírovat kód",
     "copied": "Zkopírováno",
     "refreshIn": "{{time}} s"
+  },
+  "globalModal": {
+    "ok": "Provedu",
+    "title": "Oznámení"
   }
 }

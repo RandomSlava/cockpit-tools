@@ -225,7 +225,13 @@
     "deleteTagWarning": "Sei sicuro di voler eliminare questo tag da tutti gli account?",
     "expand": "Espandi",
     "processing": "Elaborazione in corso...",
-    "selectAll": "Seleziona tutto"
+    "selectAll": "Seleziona tutto",
+    "back": "Indietro",
+    "edit": "Modificare",
+    "noData": "Nessun dato",
+    "search": "Cerca...",
+    "status": "Stato",
+    "syncing": "Sincronizzazione..."
   },
   "nav": {
     "overview": "Antigravity IDE",
@@ -759,7 +765,12 @@
       "codexAppSpeedFast": "Rapida",
       "codexAppSpeedLaunch": "Riavvia Codex",
       "codexAppSpeedSaveFailed": "Impossibile salvare la velocità di Codex: {{error}}",
-      "codexAppSpeedLaunchFailed": "Impossibile riavviare Codex: {{error}}"
+      "codexAppSpeedLaunchFailed": "Impossibile riavviare Codex: {{error}}",
+      "account": "Account",
+      "accountLevelRefreshDisabled": "Disabilitato",
+      "accountLevelRefreshInherit": "Eredita le impostazioni della piattaforma",
+      "accountLevelRefreshSummary": "Espandi la configurazione",
+      "accountLevelRefreshTitle": "Configurazione di aggiornamento a livello di account"
     },
     "network": {
       "apiTitle": "API della cabina di pilotaggio antigravità",
@@ -945,7 +956,9 @@
     "title": "Gestione Account",
     "subtitle": "Gestisci la tua lista di account Antigravity IDE.",
     "total": "{{count}} account",
-    "search": "Cerca account...",
+    "search": {
+      "placeholder": "Cerca conti"
+    },
     "addAccount": "Aggiungi Account",
     "refreshAll": "Aggiorna Tutto",
     "export": "Esporta",
@@ -1035,7 +1048,16 @@
         "tooMany": "Puoi aggiungere fino a {{max}} tag"
       },
       "notesLabel": "Note",
-      "notesPlaceholder": "Inserisci una nota. Lascia vuoto per cancellarla"
+      "notesPlaceholder": "Inserisci una nota. Lascia vuoto per cancellarla",
+      "proxyLabel": "Proxy account",
+      "proxyPlaceholder": "Es. 209.127.19.151:8000:user:pass o http://...",
+      "proxyHint": "Proxy individuale per questo account. Verrà utilizzato al posto del proxy globale quando si avvia l'IDE.",
+      "addHint": "Clicca per aggiungere",
+      "editHint": "Clicca per modificare",
+      "globalDeleteHint": "Elimina questo tag globalmente",
+      "globalRenameHint": "Rinomina questo tag a livello globale",
+      "renamePlaceholder": "Inserire nome nuovo tag.",
+      "renamingGlobal": "Rinominare globalmente tutti i record di tag esistenti:"
     },
     "groupByTag": "Raggruppa per tag",
     "untagged": "Senza tag",
@@ -2559,7 +2581,8 @@
         "partialDetected": "Attualmente è impostato un solo campo gestito: model_context_window={{context}}, model_auto_compact_token_limit={{compact}}. Il salvataggio riscriverà entrambi i campi utilizzando lo schema corrente.",
         "notSet": "Non impostato"
       },
-      "managePresets": "Preset modello"
+      "managePresets": "Preset modello",
+      "noMatchTitle": "Nessun provider corrispondente"
     },
     "quickSwitch": {
       "action": "Cambio rapido provider",
@@ -2805,6 +2828,11 @@
         "saveSuccess": "Blocchi modello salvati",
         "cardCount": "{{count}} bloccati"
       }
+    },
+    "cli": {
+      "launchSuccess": "Codex CLI lanciato con successo",
+      "quickLaunch": "Avvio veloce",
+      "selectWorkingDir": "Seleziona directory di lavoro Codex CLI"
     }
   },
   "githubCopilot": {
@@ -3069,6 +3097,10 @@
       "title": "Memoria filtri",
       "enable": "Ricorda i filtri della panoramica account (esclusa la ricerca)",
       "hint": "Disattivato per impostazione predefinita. Se attivato, ogni piattaforma mantiene filtri, tag e ordinamento."
+    },
+    "codexWindow": {
+      "orDivider": "OR (attivato se ci sono corrispondenze)",
+      "primaryWindowMeaning": "primary_window si riferisce generalmente alla quota di 5 ore; per gli utenti gratuiti primary_window può corrispondere alla quota settimanale, che può variare in base all'abbonamento."
     }
   },
   "quotaAlert": {
@@ -3202,7 +3234,8 @@
     "account": {
       "signedInWith": "Accedi con {{provider}}",
       "providerUnknown": "Sconosciuto",
-      "userId": "ID utente"
+      "userId": "ID utente",
+      "signedInWithUnknown": "Accesso effettuato con sconosciuto"
     },
     "credits": {
       "estimatedResetOn": "L'utilizzo stimato viene ripristinato il {{date}}",
@@ -3805,6 +3838,13 @@
     },
     "quota": {
       "usedOfTotal": "{{used}} / {{total}}"
+    },
+    "quotaCategory": {
+      "activity": "PACCHETTO PROMO",
+      "base": "Pacchetto base",
+      "empty": "Nessun dato di quota",
+      "extra": "Pacchetto extra",
+      "other": "Altro"
     }
   },
   "qoder": {
@@ -3889,6 +3929,9 @@
       "desc": "Supporta accesso OAuth ufficiale, importazione locale, importazione JSON e cambio account tramite iniezione locale. Durante il cambio, i dati vengono riscritti seguendo le regole reali di persistenza del client Trae.",
       "permission": "Ambito permessi: legge e scrive i campi relativi al login nel file locale Trae storage.json per importazione account, iniezione del cambio account e visualizzazione del piano. Tutti i dati vengono elaborati localmente sul dispositivo.",
       "network": "Ambito rete: accesso OAuth, refresh del token e query del piano chiamano le API ufficiali di Trae. I file account locali e il contenuto grezzo dello storage non vengono caricati verso servizi di terze parti."
+    },
+    "columns": {
+      "usage": "Utilizzo"
     }
   },
   "codebuddyCn": {
@@ -4259,5 +4302,9 @@
     "copyCode": "Copia codice",
     "copied": "Copiato",
     "refreshIn": "{{time}} s"
+  },
+  "globalModal": {
+    "ok": "Hanno compreso",
+    "title": "Avviso"
   }
 }

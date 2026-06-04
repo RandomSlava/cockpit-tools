@@ -979,6 +979,56 @@ fn sanitize_macos_gui_launch_env(cmd: &mut Command) {
     cmd.env_remove("XPC_SERVICE_NAME");
 }
 
+fn parse_proxy_format(raw: &str) -> String {
+    let raw = raw.trim();
+    if raw.is_empty() {
+        return String::new();
+    }
+    let has_scheme = raw.starts_with("http://") || 
+                     raw.starts_with("https://") || 
+                     raw.starts_with("socks5://") || 
+                     raw.starts_with("socks5h://") || 
+                     raw.starts_with("socks4://") ||
+                     raw.starts_with("socks://");
+    if has_scheme {
+        raw.to_string()
+    } else {
+        let parts: Vec<&str> = raw.split(':').collect();
+        if parts.len() == 4 {
+            format!("http://{}:{}@{}:{}", parts[2], parts[3], parts[0], parts[1])
+        } else {
+            format!("http://{}", raw)
+        }
+    }
+}
+
+fn get_effective_proxy_pairs() -> Vec<(&'static str, String)> {
+    if let Ok(Some(account)) = crate::modules::account::get_current_account() {
+        if let Some(proxy_url) = account.proxy_url {
+            let proxy_url = proxy_url.trim();
+            if !proxy_url.is_empty() {
+                let parsed = parse_proxy_format(proxy_url);
+                let mut pairs = vec![
+                    ("http_proxy", parsed.clone()),
+                    ("https_proxy", parsed.clone()),
+                    ("HTTP_PROXY", parsed.clone()),
+                    ("HTTPS_PROXY", parsed.clone()),
+                    ("all_proxy", parsed.clone()),
+                    ("ALL_PROXY", parsed),
+                ];
+                let config = config::get_user_config();
+                let no_proxy = config.global_proxy_no_proxy.trim();
+                if !no_proxy.is_empty() {
+                    pairs.push(("no_proxy", no_proxy.to_string()));
+                    pairs.push(("NO_PROXY", no_proxy.to_string()));
+                }
+                return pairs;
+            }
+        }
+    }
+    managed_proxy_env_pairs()
+}
+
 fn managed_proxy_env_pairs() -> Vec<(&'static str, String)> {
     let config = config::get_user_config();
     if !config.global_proxy_enabled {
@@ -991,13 +1041,14 @@ fn managed_proxy_env_pairs() -> Vec<(&'static str, String)> {
         return Vec::new();
     }
 
+    let parsed = parse_proxy_format(proxy_url);
     let mut pairs = vec![
-        ("http_proxy", proxy_url.to_string()),
-        ("https_proxy", proxy_url.to_string()),
-        ("HTTP_PROXY", proxy_url.to_string()),
-        ("HTTPS_PROXY", proxy_url.to_string()),
-        ("all_proxy", proxy_url.to_string()),
-        ("ALL_PROXY", proxy_url.to_string()),
+        ("http_proxy", parsed.clone()),
+        ("https_proxy", parsed.clone()),
+        ("HTTP_PROXY", parsed.clone()),
+        ("HTTPS_PROXY", parsed.clone()),
+        ("all_proxy", parsed.clone()),
+        ("ALL_PROXY", parsed),
     ];
 
     let no_proxy = config.global_proxy_no_proxy.trim();
@@ -1029,7 +1080,7 @@ fn log_managed_proxy_injection(mode: &str, cmd: &Command, pairs: &[(&'static str
         .join(",");
 
     crate::modules::logger::log_info(&format!(
-        "[Proxy] 已注入全局代理 mode={} program={} proxy_url={} no_proxy={} keys={}",
+        "[Proxy] 已注入代理 mode={} program={} proxy_url={} no_proxy={} keys={}",
         mode,
         cmd.get_program().to_string_lossy(),
         proxy_url,
@@ -1043,7 +1094,7 @@ fn log_managed_proxy_injection(mode: &str, cmd: &Command, pairs: &[(&'static str
 }
 
 pub fn apply_managed_proxy_env_to_command(cmd: &mut Command) {
-    let pairs = managed_proxy_env_pairs();
+    let pairs = get_effective_proxy_pairs();
     if pairs.is_empty() {
         return;
     }
@@ -1055,7 +1106,7 @@ pub fn apply_managed_proxy_env_to_command(cmd: &mut Command) {
 
 #[cfg(target_os = "macos")]
 pub fn append_managed_proxy_env_to_open_args(cmd: &mut Command) {
-    let pairs = managed_proxy_env_pairs();
+    let pairs = get_effective_proxy_pairs();
     if pairs.is_empty() {
         return;
     }

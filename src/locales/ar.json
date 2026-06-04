@@ -225,7 +225,13 @@
     "deleteTagWarning": "هل أنت متأكد من حذف هذا الوسم من جميع الحسابات؟",
     "expand": "توسيع",
     "processing": "جارٍ المعالجة...",
-    "selectAll": "تحديد الكل"
+    "selectAll": "تحديد الكل",
+    "back": "[ترجمة المصطلح: Back]",
+    "edit": "تحرير",
+    "noData": "لايوجد بيانات",
+    "search": "جاري البحث...",
+    "status": "الحالة",
+    "syncing": "المزامنه..."
   },
   "floatingCard": {
     "selectPlatform": "تبديل المنصة",
@@ -805,7 +811,12 @@
       "codexAppSpeedFast": "سريع",
       "codexAppSpeedLaunch": "إعادة تشغيل Codex",
       "codexAppSpeedSaveFailed": "فشل حفظ سرعة Codex: {{error}}",
-      "codexAppSpeedLaunchFailed": "فشلت إعادة تشغيل Codex: {{error}}"
+      "codexAppSpeedLaunchFailed": "فشلت إعادة تشغيل Codex: {{error}}",
+      "account": "الحسابات",
+      "accountLevelRefreshDisabled": "مُعاق",
+      "accountLevelRefreshInherit": "وراثة إعدادات المنصة",
+      "accountLevelRefreshSummary": "توسيع التكوين",
+      "accountLevelRefreshTitle": "تكوين التحديث على مستوى الحساب"
     },
     "network": {
       "apiTitle": "واجهة برمجة تطبيقات قمرة القيادة المضادة للجاذبية",
@@ -991,7 +1002,9 @@
     "title": "إدارة الحسابات",
     "subtitle": "إدارة قائمة حسابات Antigravity IDE الخاصة بك.",
     "total": "إجمالي {{count}} حسابات",
-    "search": "البحث عن حساب...",
+    "search": {
+      "placeholder": "بحث في الحسابات"
+    },
     "addAccount": "إضافة حساب",
     "refreshAll": "تحديث الكل",
     "export": "تصدير",
@@ -1081,7 +1094,16 @@
         "tooMany": "يمكنك إضافة حتى {{max}} أوسمة"
       },
       "notesLabel": "ملاحظات",
-      "notesPlaceholder": "أدخل ملاحظات. اتركه فارغًا للمسح"
+      "notesPlaceholder": "أدخل ملاحظات. اتركه فارغًا للمسح",
+      "proxyLabel": "وكيل الحساب",
+      "proxyPlaceholder": "على سبيل المثال 209.127.19.151:8000: user:pass أو http ://...",
+      "proxyHint": "وكيل فردي لهذا الحساب. سيتم استخدامها بدلاً من الوكيل العالمي عند إطلاق IDE.",
+      "addHint": "انقر للإضافة",
+      "editHint": "انقر للتعديل",
+      "globalDeleteHint": "حذف هذه العلامة عالميًا",
+      "globalRenameHint": "إعادة تسمية هذه العلامة عالميًا",
+      "renamePlaceholder": "أدخل اسم علامة تبويب",
+      "renamingGlobal": "إعادة تسمية جميع سجلات العلامات الموجودة عالميًا:"
     },
     "groupByTag": "تجميع حسب العلامة",
     "untagged": "غير موسوم",
@@ -2605,7 +2627,8 @@
         "partialDetected": "تم حاليًا تعيين حقل مُدار واحد فقط: model_context_window={{context}}، model_auto_compact_token_limit={{compact}}. سيؤدي الحفظ إلى إعادة كتابة كلا الحقلين باستخدام المخطط الحالي.",
         "notSet": "لم يتم ضبطه"
       },
-      "managePresets": "النماذج المسبقة"
+      "managePresets": "النماذج المسبقة",
+      "noMatchTitle": "لا يوجد مزودين مطابقين"
     },
     "quickSwitch": {
       "action": "تبديل المزوّد سريعًا",
@@ -2851,6 +2874,11 @@
         "saveSuccess": "تم حفظ حظر نماذج الحساب",
         "cardCount": "{{count}} محظور"
       }
+    },
+    "cli": {
+      "launchSuccess": "تم إطلاق واجهة سطر الأوامر الخاصة بالدستور الغذائي بنجاح",
+      "quickLaunch": "التشغيل السريع",
+      "selectWorkingDir": "تحديد دليل عمل واجهة سطر الأوامر الخاصة بالدستور الغذائي"
     }
   },
   "githubCopilot": {
@@ -3115,6 +3143,10 @@
       "title": "تذكّر الفلاتر",
       "enable": "تذكّر فلاتر نظرة الحسابات (بدون البحث)",
       "hint": "مغلق افتراضيًا. عند التفعيل تُحفَظ التصفية والوسوم والترتيب لكل منصة."
+    },
+    "codexWindow": {
+      "orDivider": "أو (يتم تشغيله إذا كان هناك أي تطابق)",
+      "primaryWindowMeaning": "primary_window يشير بشكل عام إلى حصة 5 ساعات ؛ بالنسبة للمستخدمين المجانيين، قد تتوافق primary_window مع الحصة الأسبوعية، والتي قد تختلف حسب الاشتراك."
     }
   },
   "quotaAlert": {
@@ -3248,7 +3280,8 @@
     "account": {
       "signedInWith": "تم تسجيل الدخول باستخدام {{provider}}",
       "providerUnknown": "مجهول",
-      "userId": "معرف المستخدم"
+      "userId": "معرف المستخدم",
+      "signedInWithUnknown": "تم تسجيل الدخول باستخدام غير معروف"
     },
     "credits": {
       "estimatedResetOn": "إعادة تعيين الاستخدام المقدر على {{date}}",
@@ -3851,6 +3884,13 @@
     },
     "quota": {
       "usedOfTotal": "{{used}} / {{total}}"
+    },
+    "quotaCategory": {
+      "activity": "حزمة العرض الترويجي",
+      "base": "الحزمة الأساسية",
+      "empty": "لا توجد بيانات عن الحصص",
+      "extra": "حزمة إضافية",
+      "other": "أخرى"
     }
   },
   "qoder": {
@@ -3935,6 +3975,9 @@
       "desc": "يدعم تسجيل الدخول الرسمي عبر OAuth والاستيراد المحلي واستيراد JSON وتبديل الحساب عبر الحقن المحلي. تتم إعادة الكتابة وفقا لقواعد التخزين الفعلية لعميل Trae.",
       "permission": "نطاق الصلاحيات: قراءة وكتابة الحقول المرتبطة بتسجيل الدخول في ملف storage.json المحلي الخاص بـ Trae لاستخدامها في استيراد الحساب وحقن تبديل الحساب وعرض الخطة. تتم معالجة جميع البيانات محليا على جهازك.",
       "network": "نطاق الشبكة: تسجيل الدخول عبر OAuth وتحديث الرمز المميز واستعلامات الخطة تستدعي واجهات Trae الرسمية. لا يتم رفع ملفات الحساب المحلية أو محتوى التخزين الخام إلى خدمات خارجية."
+    },
+    "columns": {
+      "usage": "الاستخدام"
     }
   },
   "codebuddyCn": {
@@ -4259,5 +4302,9 @@
     "copyCode": "نسخ الرمز",
     "copied": "تم النسخ",
     "refreshIn": "{{time}} ث"
+  },
+  "globalModal": {
+    "ok": "مفهوم",
+    "title": "الإخطارات والتبليغات"
   }
 }

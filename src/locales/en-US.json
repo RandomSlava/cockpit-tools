@@ -225,7 +225,13 @@
     "deleteTagWarning": "Are you sure you want to delete this tag from all accounts?",
     "expand": "Expand",
     "processing": "Processing...",
-    "selectAll": "Select All"
+    "selectAll": "Select All",
+    "back": "Back",
+    "edit": "Edit",
+    "noData": "No data",
+    "search": "Search...",
+    "status": "Status",
+    "syncing": "Syncing..."
   },
   "floatingCard": {
     "selectPlatform": "Switch platform",
@@ -903,7 +909,12 @@
       "codexAppSpeedFast": "Fast",
       "codexAppSpeedLaunch": "Restart Codex",
       "codexAppSpeedSaveFailed": "Failed to save Codex speed: {{error}}",
-      "codexAppSpeedLaunchFailed": "Failed to restart Codex: {{error}}"
+      "codexAppSpeedLaunchFailed": "Failed to restart Codex: {{error}}",
+      "account": "Accounts",
+      "accountLevelRefreshDisabled": "Disabled",
+      "accountLevelRefreshInherit": "Inherit platform settings",
+      "accountLevelRefreshSummary": "Expand config",
+      "accountLevelRefreshTitle": "Account-level refresh configuration"
     },
     "network": {
       "apiTitle": "Antigravity Cockpit API",
@@ -991,7 +1002,9 @@
     "title": "Account",
     "subtitle": "Manage your Antigravity IDE account list.",
     "total": "{{count}} accounts",
-    "search": "Search accounts...",
+    "search": {
+      "placeholder": "Search accounts..."
+    },
     "addAccount": "Add Account",
     "refreshAll": "Refresh All",
     "export": "Export",
@@ -1081,7 +1094,16 @@
         "tooMany": "You can add up to {{max}} tags"
       },
       "notesLabel": "Notes",
-      "notesPlaceholder": "Enter notes. Leave empty to clear"
+      "notesPlaceholder": "Enter notes. Leave empty to clear",
+      "proxyLabel": "Account Proxy",
+      "proxyPlaceholder": "E.g. 209.127.19.151:8000:user:pass or http://...",
+      "proxyHint": "Individual proxy for this account. Will be used instead of the global proxy when launching the IDE.",
+      "addHint": "Click to add",
+      "editHint": "Click to modify",
+      "globalDeleteHint": "Delete this tag globally",
+      "globalRenameHint": "Rename this tag globally",
+      "renamePlaceholder": "Enter new tag name",
+      "renamingGlobal": "Globally renaming all existing tag records:"
     },
     "groupByTag": "Group by tags",
     "untagged": "Untagged",
@@ -2329,7 +2351,8 @@
           "contextWindowInvalid": "Context window must be an integer greater than 0.",
           "autoCompactInvalid": "Auto-compact limit must be an integer greater than 0."
         }
-      }
+      },
+      "noMatchTitle": "No matching providers"
     },
     "quickSwitch": {
       "action": "Quick Switch Provider",
@@ -2851,6 +2874,11 @@
         "loading": "Loading request logs",
         "gatewayModeUnknown": "Unknown Mode"
       }
+    },
+    "cli": {
+      "launchSuccess": "Codex CLI launched successfully",
+      "quickLaunch": "CLI Quick Launch",
+      "selectWorkingDir": "Select Codex CLI working directory"
     }
   },
   "codebuddy": {
@@ -2951,7 +2979,14 @@
     "oauthSuccessCloseNowLabel": "Close WebView",
     "oauthSuccessCloseLaterLabel": "Later",
     "oauthSuccessCloseNowStatus": "✅ Account added. Closing window...",
-    "oauthSuccessCloseLaterStatus": "✅ Account added. This WebView stays open."
+    "oauthSuccessCloseLaterStatus": "✅ Account added. This WebView stays open.",
+    "quotaCategory": {
+      "activity": "Promo Pack",
+      "base": "Base Package",
+      "empty": "No quota data",
+      "extra": "Extra Pack",
+      "other": "Other"
+    }
   },
   "githubCopilot": {
     "title": "GitHub Copilot Account",
@@ -3215,6 +3250,10 @@
     "workbuddy": {
       "title": "WorkBuddy Settings",
       "appPath": "WorkBuddy Path"
+    },
+    "codexWindow": {
+      "orDivider": "OR (triggered if any matches)",
+      "primaryWindowMeaning": "primary_window generally refers to 5-hour quota; for free users primary_window may correspond to weekly quota, which may differ by subscription."
     }
   },
   "quotaAlert": {
@@ -3348,7 +3387,8 @@
     "account": {
       "signedInWith": "Signed in with {{provider}}",
       "providerUnknown": "Unknown",
-      "userId": "User ID"
+      "userId": "User ID",
+      "signedInWithUnknown": "Signed in with unknown"
     },
     "credits": {
       "estimatedResetOn": "Estimated Usage resets on {{date}}",
@@ -4007,6 +4047,9 @@
       "desc": "Supports official OAuth sign-in, local import, JSON import, and local injection-based account switching. Account switching writes back using Trae client's actual on-disk rules.",
       "permission": "Permission scope: read and write login-related fields in the local Trae storage.json for account import, account switching injection, and plan display. All data is processed locally on your machine.",
       "network": "Network scope: OAuth sign-in, token refresh, and plan queries call official Trae APIs. Local account files and raw storage contents are not uploaded to third-party services."
+    },
+    "columns": {
+      "usage": "Usage"
     }
   },
   "codebuddyCn": {
@@ -4259,5 +4302,9 @@
     "importErrorMsg": "Import failed. Please ensure the file format is a valid exported JSON array.",
     "btnImportTitle": "Import Local JSON Backup",
     "btnExportTitle": "Export Saved as JSON"
+  },
+  "globalModal": {
+    "ok": "Understood",
+    "title": "Notice"
   }
 }

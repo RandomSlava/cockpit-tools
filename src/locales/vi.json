@@ -225,7 +225,13 @@
     "deleteTagWarning": "Bạn có chắc chắn muốn xóa thẻ này khỏi tất cả tài khoản không?",
     "expand": "Mở rộng",
     "processing": "Đang xử lý...",
-    "selectAll": "Chọn tất cả"
+    "selectAll": "Chọn tất cả",
+    "back": "Quay lại",
+    "edit": "Chỉnh sửa",
+    "noData": "Không có dữ liệu",
+    "search": "Tìm kiếm...",
+    "status": "Trạng thái",
+    "syncing": "Đang đồng bộ..."
   },
   "nav": {
     "overview": "Antigravity IDE",
@@ -759,7 +765,12 @@
       "codexAppSpeedFast": "Nhanh",
       "codexAppSpeedLaunch": "Khởi động lại Codex",
       "codexAppSpeedSaveFailed": "Không thể lưu tốc độ Codex: {{error}}",
-      "codexAppSpeedLaunchFailed": "Không thể khởi động lại Codex: {{error}}"
+      "codexAppSpeedLaunchFailed": "Không thể khởi động lại Codex: {{error}}",
+      "account": "Tài khoản",
+      "accountLevelRefreshDisabled": "Đã tắt",
+      "accountLevelRefreshInherit": "Kế thừa cài đặt nền tảng",
+      "accountLevelRefreshSummary": "Mở rộng cấu hình",
+      "accountLevelRefreshTitle": "Cấu hình làm mới ở cấp độ tài khoản"
     },
     "network": {
       "apiTitle": "API Antigravity Cockpit",
@@ -945,7 +956,9 @@
     "title": "Quản lý tài khoản",
     "subtitle": "Quản lý danh sách tài khoản Antigravity IDE của bạn.",
     "total": "Tổng cộng {{count}} tài khoản",
-    "search": "Tìm kiếm tài khoản...",
+    "search": {
+      "placeholder": "Tìm kiếm tài khoản..."
+    },
     "addAccount": "Thêm tài khoản",
     "refreshAll": "Làm mới tất cả",
     "export": "Xuất",
@@ -1035,7 +1048,16 @@
         "tooMany": "Bạn chỉ có thể thêm tối đa {{max}} thẻ"
       },
       "notesLabel": "Ghi chú",
-      "notesPlaceholder": "Nhập ghi chú. Để trống để xóa"
+      "notesPlaceholder": "Nhập ghi chú. Để trống để xóa",
+      "proxyLabel": "Proxy tài khoản",
+      "proxyPlaceholder": "Ví dụ: 209.127.19.151:8000:user:pass hoặc http://...",
+      "proxyHint": "Proxy riêng cho tài khoản này. Sẽ được sử dụng thay cho proxy toàn cục khi khởi chạy IDE.",
+      "addHint": "Nhấp để thêm",
+      "editHint": "Nhấp để sửa",
+      "globalDeleteHint": "Xóa thẻ này trên toàn cục",
+      "globalRenameHint": "Đổi tên thẻ này trên toàn cục",
+      "renamePlaceholder": "Nhập tên thẻ mới",
+      "renamingGlobal": "Đang đổi tên tất cả các bản ghi thẻ hiện có trên toàn cục:"
     },
     "groupByTag": "Nhóm theo thẻ",
     "untagged": "Chưa gắn thẻ",
@@ -2559,7 +2581,8 @@
         "partialDetected": "Hiện chỉ có một trường được quản lý được đặt: model_context_window={{context}}, model_auto_compact_token_limit={{compact}}. Việc lưu sẽ ghi lại cả hai trường bằng cách sử dụng lược đồ hiện tại.",
         "notSet": "Chưa đặt"
       },
-      "managePresets": "Mẫu mô hình"
+      "managePresets": "Mẫu mô hình",
+      "noMatchTitle": "Không tìm thấy nhà cung cấp phù hợp"
     },
     "quickSwitch": {
       "action": "Chuyển nhanh nhà cung cấp",
@@ -2805,6 +2828,11 @@
         "saveSuccess": "Đã lưu chặn mô hình tài khoản",
         "cardCount": "Chặn {{count}}"
       }
+    },
+    "cli": {
+      "launchSuccess": "Khởi chạy Codex CLI thành công",
+      "quickLaunch": "Khởi chạy nhanh CLI",
+      "selectWorkingDir": "Chọn thư mục làm việc cho Codex CLI"
     }
   },
   "githubCopilot": {
@@ -3069,6 +3097,10 @@
       "title": "Ghi nhớ bộ lọc",
       "enable": "Ghi nhớ bộ lọc tổng quan tài khoản (không gồm tìm kiếm)",
       "hint": "Mặc định tắt. Khi bật, mỗi nền tảng sẽ giữ bộ lọc, thẻ và thứ tự sắp xếp."
+    },
+    "codexWindow": {
+      "orDivider": "HOẶC (kích hoạt nếu khớp bất kỳ điều kiện nào)",
+      "primaryWindowMeaning": "primary_window thường đề cập đến hạn mức 5 giờ; đối với người dùng miễn phí, primary_window có thể tương ứng với hạn mức hàng tuần, giá trị này có thể thay đổi tùy theo gói đăng ký."
     }
   },
   "quotaAlert": {
@@ -3202,7 +3234,8 @@
     "account": {
       "signedInWith": "Đã đăng nhập bằng {{provider}}",
       "providerUnknown": "Không xác định",
-      "userId": "ID người dùng"
+      "userId": "ID người dùng",
+      "signedInWithUnknown": "Đã đăng nhập bằng tài khoản không xác định"
     },
     "credits": {
       "estimatedResetOn": "Mức sử dụng ước tính được đặt lại trên {{date}}",
@@ -3805,6 +3838,13 @@
     },
     "quota": {
       "usedOfTotal": "{{used}} / {{total}}"
+    },
+    "quotaCategory": {
+      "activity": "Gói khuyến mãi",
+      "base": "Gói cơ bản",
+      "empty": "Không có dữ liệu hạn mức",
+      "extra": "Gói bổ sung",
+      "other": "Khác"
     }
   },
   "qoder": {
@@ -3889,6 +3929,9 @@
       "desc": "Ho tro dang nhap OAuth chinh thuc, nhap cuc bo, nhap JSON va chuyen tai khoan bang cach tiem du lieu cuc bo. Khi chuyen tai khoan, du lieu duoc ghi lai theo dung quy tac luu tru thuc te cua Trae client.",
       "permission": "Pham vi quyen: doc va ghi cac truong lien quan den dang nhap trong storage.json cuc bo cua Trae de phuc vu viec nhap tai khoan, tiem chuyen tai khoan va hien thi goi. Moi du lieu deu duoc xu ly cuc bo tren may cua ban.",
       "network": "Pham vi mang: dang nhap OAuth, lam moi token va truy van goi se goi cac API chinh thuc cua Trae. Tep tai khoan cuc bo va noi dung luu tru thuan khong duoc tai len dich vu ben thu ba."
+    },
+    "columns": {
+      "usage": "Dung lượng sử dụng"
     }
   },
   "codebuddyCn": {
@@ -4259,5 +4302,9 @@
     "copyCode": "Sao chép mã",
     "copied": "Đã sao chép",
     "refreshIn": "{{time}} giây"
+  },
+  "globalModal": {
+    "ok": "Đã hiểu",
+    "title": "Thông báo"
   }
 }

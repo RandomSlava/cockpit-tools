@@ -225,7 +225,13 @@
     "deleteTagWarning": "Apakah Anda yakin ingin menghapus tag ini dari semua akun?",
     "expand": "Perluas",
     "processing": "Memproses...",
-    "selectAll": "Pilih Semua"
+    "selectAll": "Pilih Semua",
+    "back": "Kembali",
+    "edit": "Ubah",
+    "noData": "Tidak memiliki",
+    "search": "Cari...",
+    "status": "Status​id",
+    "syncing": "Menyinkronkan..."
   },
   "floatingCard": {
     "selectPlatform": "Ganti platform",
@@ -805,7 +811,12 @@
       "codexAppSpeedFast": "Cepat",
       "codexAppSpeedLaunch": "Mulai ulang Codex",
       "codexAppSpeedSaveFailed": "Gagal menyimpan kecepatan Codex: {{error}}",
-      "codexAppSpeedLaunchFailed": "Gagal memulai ulang Codex: {{error}}"
+      "codexAppSpeedLaunchFailed": "Gagal memulai ulang Codex: {{error}}",
+      "account": "Akun",
+      "accountLevelRefreshDisabled": "Dinonaktifkan",
+      "accountLevelRefreshInherit": "Mewarisi pengaturan platform",
+      "accountLevelRefreshSummary": "Perluas konfigurasi",
+      "accountLevelRefreshTitle": "Konfigurasi penyegaran tingkat akun"
     },
     "network": {
       "apiTitle": "API Antigravity Cockpit",
@@ -991,7 +1002,9 @@
     "title": "Akun",
     "subtitle": "Kelola daftar akun Antigravity IDE Anda.",
     "total": "{{count}} akun",
-    "search": "Cari akun...",
+    "search": {
+      "placeholder": "Cari akun..."
+    },
     "addAccount": "Tambah Akun",
     "refreshAll": "Segarkan Semua",
     "export": "Ekspor",
@@ -1081,7 +1094,16 @@
         "tooMany": "Anda dapat menambahkan maksimal {{max}} tag"
       },
       "notesLabel": "Catatan",
-      "notesPlaceholder": "Masukkan catatan. Kosongkan untuk menghapus"
+      "notesPlaceholder": "Masukkan catatan. Kosongkan untuk menghapus",
+      "proxyLabel": "Proksi Akun",
+      "proxyPlaceholder": "Misalnya 209.127.19.151: 8000:user:pass atau http ://...",
+      "proxyHint": "Proxy individu untuk akun ini. Akan digunakan sebagai pengganti proxy global saat meluncurkan ide.",
+      "addHint": "Klik untuk menambahkan teks",
+      "editHint": "Klik untuk memodifikasi",
+      "globalDeleteHint": "Hapus tag ini secara global",
+      "globalRenameHint": "Ganti nama tag ini secara global",
+      "renamePlaceholder": "Masukkan nama tag",
+      "renamingGlobal": "Mengubah nama semua catatan tag yang ada secara global:"
     },
     "groupByTag": "Kelompokkan berdasarkan tag",
     "untagged": "Tanpa Tag",
@@ -2605,7 +2627,8 @@
         "partialDetected": "Hanya satu bidang terkelola yang saat ini disetel: model_context_window={{context}}, model_auto_compact_token_limit={{compact}}. Menyimpan akan menulis ulang kedua bidang menggunakan skema saat ini.",
         "notSet": "Tidak disetel"
       },
-      "managePresets": "Preset model"
+      "managePresets": "Preset model",
+      "noMatchTitle": "Tidak ada penyedia yang cocok"
     },
     "quickSwitch": {
       "action": "Alih cepat penyedia",
@@ -2851,6 +2874,11 @@
         "saveSuccess": "Blokir model akun tersimpan",
         "cardCount": "{{count}} diblokir"
       }
+    },
+    "cli": {
+      "launchSuccess": "Codex CLI berhasil diluncurkan",
+      "quickLaunch": "Peluncuran Cepat CLI",
+      "selectWorkingDir": "Pilih direktori kerja Codex CLI"
     }
   },
   "codebuddy": {
@@ -2951,7 +2979,14 @@
     "oauthSuccessCloseNowLabel": "Close WebView",
     "oauthSuccessCloseLaterLabel": "Later",
     "oauthSuccessCloseNowStatus": "Ã¢Å“â€¦ Account added. Closing window...",
-    "oauthSuccessCloseLaterStatus": "Ã¢Å“â€¦ Account added. This WebView stays open."
+    "oauthSuccessCloseLaterStatus": "Ã¢Å“â€¦ Account added. This WebView stays open.",
+    "quotaCategory": {
+      "activity": "Paket Promo",
+      "base": "Paket Dasar",
+      "empty": "Tidak ada data kuota",
+      "extra": "Paket Ekstra",
+      "other": "Lainnya"
+    }
   },
   "githubCopilot": {
     "title": "Akun GitHub Copilot",
@@ -3215,6 +3250,10 @@
       "title": "Simpan Filter",
       "enable": "Ingat filter ringkasan akun (tanpa pencarian)",
       "hint": "Nonaktif secara default. Saat diaktifkan, tiap platform menyimpan filter, tag, dan urutan."
+    },
+    "codexWindow": {
+      "orDivider": "Atau (dipicu jika ada yang cocok)",
+      "primaryWindowMeaning": "primary_windows umumnya mengacu pada kuota 5 jam; untuk pengguna gratis primary_windows mungkin sesuai dengan kuota mingguan, yang mungkin berbeda menurut langganan."
     }
   },
   "quotaAlert": {
@@ -3348,7 +3387,8 @@
     "account": {
       "signedInWith": "Signed in with {{provider}}",
       "providerUnknown": "Unknown",
-      "userId": "User ID"
+      "userId": "User ID",
+      "signedInWithUnknown": "Masuk dengan tidak diketahui"
     },
     "credits": {
       "estimatedResetOn": "Estimated Usage resets on {{date}}",
@@ -4007,6 +4047,9 @@
       "desc": "Mendukung masuk OAuth resmi, impor lokal, impor JSON, dan penggantian akun berbasis injeksi lokal. Penggantian akun menulis kembali menggunakan aturan on-disk klien Trae yang sebenarnya.",
       "permission": "Cakupan izin: baca dan tulis bidang terkait login di storage.json Trae lokal untuk impor akun, injeksi penggantian akun, dan tampilan paket. Semua data diproses secara lokal di mesin Anda.",
       "network": "Cakupan jaringan: Masuk OAuth, penyegaran token, dan kueri paket memanggil API resmi Trae. Berkas akun lokal dan konten penyimpanan mentah tidak diunggah ke layanan pihak ketiga."
+    },
+    "columns": {
+      "usage": "Cara Pakai"
     }
   },
   "codebuddyCn": {
@@ -4259,5 +4302,9 @@
     "copyCode": "Salin kode",
     "copied": "Disalin",
     "refreshIn": "{{time}} dtk"
+  },
+  "globalModal": {
+    "ok": "Mengerti. ",
+    "title": "Pemberitahuan"
   }
 }

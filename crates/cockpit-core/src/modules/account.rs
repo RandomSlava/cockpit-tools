@@ -437,6 +437,15 @@ pub fn update_account_notes(account_id: &str, notes: String) -> Result<Account, 
     Ok(account)
 }
 
+/// 更新账号代理
+pub fn update_account_proxy(account_id: &str, proxy_url: Option<String>) -> Result<Account, String> {
+    let mut account = load_account(account_id)?;
+    let trimmed = proxy_url.map(|s| s.trim().to_string()).filter(|s| !s.is_empty());
+    account.proxy_url = trimmed;
+    save_account(&account)?;
+    Ok(account)
+}
+
 /// 列出所有账号
 pub fn list_accounts() -> Result<Vec<Account>, String> {
     if let Some(accounts) = read_list_accounts_cache() {

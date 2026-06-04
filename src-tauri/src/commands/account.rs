@@ -672,6 +672,15 @@ pub async fn update_account_notes(
 }
 
 #[tauri::command]
+pub async fn update_account_proxy(
+    account_id: String,
+    proxy_url: Option<String>,
+) -> Result<models::Account, String> {
+    let account = modules::account::update_account_proxy(&account_id, proxy_url)?;
+    Ok(account)
+}
+
+#[tauri::command]
 pub async fn get_bound_accounts(fingerprint_id: String) -> Result<Vec<models::Account>, String> {
     modules::fingerprint::get_bound_accounts(&fingerprint_id)
 }

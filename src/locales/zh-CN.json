@@ -225,7 +225,13 @@
     "deleteTagWarning": "确定要从所有账号中移除标签 ",
     "expand": "展开",
     "processing": "处理中...",
-    "selectAll": "全选"
+    "selectAll": "全选",
+    "back": "返回",
+    "edit": "编辑",
+    "noData": "暂无数据",
+    "search": "搜索...",
+    "status": "状态",
+    "syncing": "同步中..."
   },
   "floatingCard": {
     "selectPlatform": "切换平台",
@@ -903,7 +909,12 @@
       "codexAppSpeedFast": "快速",
       "codexAppSpeedLaunch": "重启 Codex",
       "codexAppSpeedSaveFailed": "保存 Codex 速度失败：{{error}}",
-      "codexAppSpeedLaunchFailed": "重启 Codex 失败：{{error}}"
+      "codexAppSpeedLaunchFailed": "重启 Codex 失败：{{error}}",
+      "account": "账号",
+      "accountLevelRefreshDisabled": "禁用",
+      "accountLevelRefreshInherit": "继承平台设置",
+      "accountLevelRefreshSummary": "展开配置",
+      "accountLevelRefreshTitle": "账号级刷新配置"
     },
     "network": {
       "apiTitle": "反重力驾驶舱 API",
@@ -991,7 +1002,9 @@
     "title": "账号管理",
     "subtitle": "管理你的 Antigravity IDE 账号列表。",
     "total": "共 {{count}} 个账号",
-    "search": "搜索账号...",
+    "search": {
+      "placeholder": "搜索账号..."
+    },
     "addAccount": "添加账号",
     "refreshAll": "刷新全部",
     "export": "导出",
@@ -1081,7 +1094,16 @@
         "tooMany": "标签数量不能超过 {{max}} 个"
       },
       "notesLabel": "备注",
-      "notesPlaceholder": "输入备注，留空表示不设置"
+      "notesPlaceholder": "输入备注，留空表示不设置",
+      "proxyLabel": "账号专属代理",
+      "proxyPlaceholder": "例如: 209.127.19.151:8000:user:pass 或 http://ip:port",
+      "proxyHint": "此账号的专属代理，启动 IDE 时将优先使用此代理而非全局代理。",
+      "addHint": "点击添加",
+      "editHint": "点击修改",
+      "globalDeleteHint": "全局删除此标签",
+      "globalRenameHint": "全局重命名此标签",
+      "renamePlaceholder": "输入新的标签名称",
+      "renamingGlobal": "正在全局重命名已存在标签所有账号记录："
     },
     "groupByTag": "按标签分组展示",
     "untagged": "默认分组",
@@ -2329,7 +2351,8 @@
           "contextWindowInvalid": "上下文窗口必须是大于 0 的整数",
           "autoCompactInvalid": "自动压缩阈值必须是大于 0 的整数"
         }
-      }
+      },
+      "noMatchTitle": "没有匹配的供应商"
     },
     "quickSwitch": {
       "action": "快速切换供应商",
@@ -2851,6 +2874,11 @@
         "loading": "正在加载请求日志",
         "gatewayModeUnknown": "模式未知"
       }
+    },
+    "cli": {
+      "launchSuccess": "已启动 Codex CLI",
+      "quickLaunch": "CLI 快速启动",
+      "selectWorkingDir": "选择 Codex CLI 工作目录"
     }
   },
   "codebuddy": {
@@ -2951,7 +2979,14 @@
     "oauthSuccessCloseNowLabel": "关闭 WebView",
     "oauthSuccessCloseLaterLabel": "稍后再说",
     "oauthSuccessCloseNowStatus": "✅ 账号添加完成，窗口即将关闭…",
-    "oauthSuccessCloseLaterStatus": "✅ 账号添加完成，已保持当前页面打开。"
+    "oauthSuccessCloseLaterStatus": "✅ 账号添加完成，已保持当前页面打开。",
+    "quotaCategory": {
+      "activity": "活动赠送包",
+      "base": "基础体验包",
+      "empty": "暂无配额数据",
+      "extra": "加量包",
+      "other": "其他"
+    }
   },
   "githubCopilot": {
     "title": "GitHub Copilot 账号管理",
@@ -3215,6 +3250,10 @@
     "workbuddy": {
       "title": "WorkBuddy 设置",
       "appPath": "WorkBuddy 路径"
+    },
+    "codexWindow": {
+      "orDivider": "OR（命中任一即触发）",
+      "primaryWindowMeaning": "primary_window 一般指 5 小时配额；免费用户下 primary_window 可能对应周配额，不同订阅可能不同。"
     }
   },
   "quotaAlert": {
@@ -3348,7 +3387,8 @@
     "account": {
       "signedInWith": "使用 {{provider}} 登录",
       "providerUnknown": "未知方式",
-      "userId": "用户 ID"
+      "userId": "用户 ID",
+      "signedInWithUnknown": "已登录未知账号"
     },
     "credits": {
       "estimatedResetOn": "Estimated Usage 在 {{date}} 重置",
@@ -4007,6 +4047,9 @@
       "desc": "支持官方 OAuth 授权、本机导入、JSON 导入与本地注入切号；切号过程按 Trae 客户端真实落盘规则写回。",
       "permission": "权限范围：读取并写入本机 Trae 配置目录中的 storage.json 登录相关字段，用于账号导入、切号注入与套餐信息展示；所有数据仅在本机处理。",
       "network": "网络范围：OAuth 登录、令牌刷新和套餐查询会请求 Trae 官方接口；不会向第三方服务上传本地账号文件或原始存储内容。"
+    },
+    "columns": {
+      "usage": "用量"
     }
   },
   "codebuddyCn": {
@@ -4045,7 +4088,9 @@
       "status": "签到状态",
       "checkedIn": "已签到",
       "notCheckedIn": "未签到",
-      "button": "签到",
+      "button": {
+        "loading": "签到中..."
+      },
       "button.loading": "签到中...",
       "done": "已完成",
       "success": "签到成功！连续签到 {{days}} 天",
@@ -4259,5 +4304,9 @@
     "importErrorMsg": "导入失败，请检查文件格式是否为您之前导出的格式 (JSON Array)。",
     "btnImportTitle": "导入本地的 JSON 文件",
     "btnExportTitle": "导出已保存为 JSON"
+  },
+  "globalModal": {
+    "ok": "知道了",
+    "title": "提示"
   }
 }

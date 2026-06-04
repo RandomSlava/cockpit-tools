@@ -225,7 +225,13 @@
     "deleteTagWarning": "確定要從所有帳號刪除此標籤嗎？",
     "expand": "展開",
     "processing": "處理中...",
-    "selectAll": "全選"
+    "selectAll": "全選",
+    "back": "返回",
+    "edit": "編輯",
+    "noData": "暫無數據",
+    "search": "搜尋...",
+    "status": "狀態",
+    "syncing": "同步中..."
   },
   "nav": {
     "overview": "Antigravity IDE",
@@ -759,7 +765,12 @@
       "codexAppSpeedFast": "快速",
       "codexAppSpeedLaunch": "重新啟動 Codex",
       "codexAppSpeedSaveFailed": "儲存 Codex 速度失敗：{{error}}",
-      "codexAppSpeedLaunchFailed": "重新啟動 Codex 失敗：{{error}}"
+      "codexAppSpeedLaunchFailed": "重新啟動 Codex 失敗：{{error}}",
+      "account": "帳號",
+      "accountLevelRefreshDisabled": "禁用",
+      "accountLevelRefreshInherit": "繼承平台設定",
+      "accountLevelRefreshSummary": "展開配置",
+      "accountLevelRefreshTitle": "帳號級刷新設定"
     },
     "network": {
       "apiTitle": "反重力駕駛艙 API",
@@ -945,7 +956,9 @@
     "title": "帳號管理",
     "subtitle": "管理您的 Antigravity IDE 帳號清單。",
     "total": "共 {{count}} 個帳號",
-    "search": "搜尋帳號...",
+    "search": {
+      "placeholder": "搜尋帳號..."
+    },
     "addAccount": "新增帳號",
     "refreshAll": "全部重新整理",
     "export": "匯出",
@@ -1035,7 +1048,16 @@
         "tooMany": "最多只能新增 {{max}} 個標籤"
       },
       "notesLabel": "備註",
-      "notesPlaceholder": "輸入備註，留空表示不設定"
+      "notesPlaceholder": "輸入備註，留空表示不設定",
+      "proxyLabel": "帳號專屬代理",
+      "proxyPlaceholder": "例如: 209.127.19.151:8000:user:pass 或 http://ip:port",
+      "proxyHint": "此帳號的專屬代理，啟動 IDE 時將優先使用此代理而非全域代理。",
+      "addHint": "點擊添加",
+      "editHint": "點擊修改",
+      "globalDeleteHint": "全域刪除此標籤",
+      "globalRenameHint": "全域重新命名此標籤",
+      "renamePlaceholder": "輸入新的標籤名稱",
+      "renamingGlobal": "正在全域重新命名已存在標籤所有帳號記錄："
     },
     "groupByTag": "依標籤分組",
     "untagged": "未標記",
@@ -2559,7 +2581,8 @@
         "partialDetected": "偵測到目前兩個欄位並不完整：model_context_window={{context}}，model_auto_compact_token_limit={{compact}}。儲存後會依照目前方案改寫。",
         "notSet": "未設定"
       },
-      "managePresets": "模型預設"
+      "managePresets": "模型預設",
+      "noMatchTitle": "Office"
     },
     "quickSwitch": {
       "action": "快速切換供應商",
@@ -2805,6 +2828,11 @@
         "saveSuccess": "帳號模型停用規則已儲存",
         "cardCount": "停用 {{count}}"
       }
+    },
+    "cli": {
+      "launchSuccess": "已啟動 Codex CLI",
+      "quickLaunch": "CLI 快速啟動",
+      "selectWorkingDir": "選擇 Codex CLI 工作目錄"
     }
   },
   "githubCopilot": {
@@ -3069,6 +3097,10 @@
       "title": "篩選記憶",
       "enable": "記住帳號總覽篩選（不含搜尋）",
       "hint": "預設關閉。開啟後會依平台記住篩選、標籤與排序。"
+    },
+    "codexWindow": {
+      "orDivider": "OR（命中任一即觸發）",
+      "primaryWindowMeaning": "primary_window 一般指 5 小時配額；免費用戶下 primary_window 可能對應週配額，不同訂閱可能不同。"
     }
   },
   "quotaAlert": {
@@ -3202,7 +3234,8 @@
     "account": {
       "signedInWith": "使用 {{provider}} 登入",
       "providerUnknown": "未知",
-      "userId": "使用者身分"
+      "userId": "使用者身分",
+      "signedInWithUnknown": "已登入未知帳號"
     },
     "credits": {
       "estimatedResetOn": "預計使用量在 {{date}} 上重置",
@@ -3805,6 +3838,13 @@
     },
     "quota": {
       "usedOfTotal": "{{used}} / {{total}}"
+    },
+    "quotaCategory": {
+      "activity": "活動贈送包",
+      "base": "基礎體驗包",
+      "empty": "暫無配額數據",
+      "extra": "加量包",
+      "other": "其他"
     }
   },
   "qoder": {
@@ -3889,6 +3929,9 @@
       "desc": "支援官方 OAuth 授權、本機匯入、JSON 匯入與本地注入切號；切號流程會依 Trae 用戶端的實際落盤規則寫回。",
       "permission": "權限範圍：讀取並寫入本機 Trae 設定目錄中的 storage.json 登入相關欄位，用於帳號匯入、切號注入與方案資訊顯示；所有資料僅在本機處理。",
       "network": "網路範圍：OAuth 登入、權杖刷新與方案查詢會請求 Trae 官方 API；不會將本機帳號檔案或原始儲存內容上傳到第三方服務。"
+    },
+    "columns": {
+      "usage": "用量"
     }
   },
   "codebuddyCn": {
@@ -4026,7 +4069,9 @@
       "status": "簽到狀態",
       "checkedIn": "已簽到",
       "notCheckedIn": "未簽到",
-      "button": "簽到",
+      "button": {
+        "loading": "簽到中..."
+      },
       "button.loading": "簽到中...",
       "done": "已完成",
       "success": "簽到成功！連續簽到 {{days}} 天",
@@ -4259,5 +4304,9 @@
     "copyCode": "複製驗證碼",
     "copied": "已複製",
     "refreshIn": "{{time}}秒"
+  },
+  "globalModal": {
+    "ok": "知道了",
+    "title": "提示"
   }
 }

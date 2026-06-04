@@ -225,7 +225,13 @@
     "deleteTagWarning": "모든 계정에서 이 태그를 삭제하시겠습니까?",
     "expand": "펼치기",
     "processing": "처리 중...",
-    "selectAll": "전체 선택"
+    "selectAll": "전체 선택",
+    "back": "뒤로",
+    "edit": "편집",
+    "noData": "기록할 사항이 없습니다.",
+    "search": "검색...",
+    "status": "상태",
+    "syncing": "동기화 중..."
   },
   "nav": {
     "overview": "Antigravity IDE",
@@ -759,7 +765,12 @@
       "codexAppSpeedFast": "빠름",
       "codexAppSpeedLaunch": "Codex 재시작",
       "codexAppSpeedSaveFailed": "Codex 속도를 저장하지 못했습니다: {{error}}",
-      "codexAppSpeedLaunchFailed": "Codex를 재시작하지 못했습니다: {{error}}"
+      "codexAppSpeedLaunchFailed": "Codex를 재시작하지 못했습니다: {{error}}",
+      "account": "계정",
+      "accountLevelRefreshDisabled": "비활성화됨",
+      "accountLevelRefreshInherit": "플랫폼 설정 상속",
+      "accountLevelRefreshSummary": "설정 펼치기",
+      "accountLevelRefreshTitle": "계정 수준 새로 고침 구성"
     },
     "network": {
       "apiTitle": "반중력 조종석 API",
@@ -945,7 +956,9 @@
     "title": "계정 관리",
     "subtitle": "Antigravity IDE 계정 목록을 관리합니다.",
     "total": "총 {{count}}개 계정",
-    "search": "계정 검색...",
+    "search": {
+      "placeholder": "계정 검색..."
+    },
     "addAccount": "계정 추가",
     "refreshAll": "모두 새로고침",
     "export": "내보내기",
@@ -1035,7 +1048,16 @@
         "tooMany": "태그는 최대 {{max}}개까지 추가할 수 있습니다"
       },
       "notesLabel": "메모",
-      "notesPlaceholder": "메모를 입력하세요. 비워 두면 삭제됩니다"
+      "notesPlaceholder": "메모를 입력하세요. 비워 두면 삭제됩니다",
+      "proxyLabel": "계정 프록시",
+      "proxyPlaceholder": "예: 209.127.19.151: 8000: user: pass 또는 http://...",
+      "proxyHint": "이 계정의 개별 프록시. IDE를 시작할 때 전역 프록시 대신 사용됩니다.",
+      "addHint": "텍스트를 추가하려면 클릭하십시오.",
+      "editHint": "Click to modify",
+      "globalDeleteHint": "Delete this tag globally",
+      "globalRenameHint": "Rename this tag globally",
+      "renamePlaceholder": "새 이름을 입력합니다.",
+      "renamingGlobal": "Globally renaming all existing tag records:"
     },
     "groupByTag": "태그별 그룹",
     "untagged": "태그 없음",
@@ -2559,7 +2581,8 @@
         "partialDetected": "현재 하나의 관리 필드(model_context_window={{context}}, model_auto_compact_token_limit={{compact}})만 설정되어 있습니다. 저장하면 현재 구성표를 사용하여 두 필드가 모두 다시 작성됩니다.",
         "notSet": "설정되지 않음"
       },
-      "managePresets": "모델 프리셋"
+      "managePresets": "모델 프리셋",
+      "noMatchTitle": "No matching providers"
     },
     "quickSwitch": {
       "action": "공급자 빠른 전환",
@@ -2805,6 +2828,11 @@
         "saveSuccess": "계정 모델 차단 규칙이 저장되었습니다",
         "cardCount": "{{count}}개 차단"
       }
+    },
+    "cli": {
+      "launchSuccess": "CODEX CLI가 성공적으로 시작되었습니다",
+      "quickLaunch": "빠른 시작Ask player who should start game",
+      "selectWorkingDir": "CODEX CLI 작업 디렉토리 선택"
     }
   },
   "githubCopilot": {
@@ -3069,6 +3097,10 @@
       "title": "필터 기억",
       "enable": "계정 개요 필터 기억(검색 제외)",
       "hint": "기본값은 꺼짐입니다. 켜면 플랫폼별로 필터, 태그, 정렬이 유지됩니다."
+    },
+    "codexWindow": {
+      "orDivider": "또는 (일치하는 항목이 있으면 트리거됨)",
+      "primaryWindowMeaning": "primary_window는 일반적으로 5시간 할당량을 나타냅니다. 무료 사용자의 경우 primary_window는 구독별로 다를 수 있는 주간 할당량에 해당할 수 있습니다."
     }
   },
   "quotaAlert": {
@@ -3202,7 +3234,8 @@
     "account": {
       "signedInWith": "{{provider}}(으)로 로그인됨",
       "providerUnknown": "알려지지 않은",
-      "userId": "사용자 ID"
+      "userId": "사용자 ID",
+      "signedInWithUnknown": "알 수 없음으로 로그인됨"
     },
     "credits": {
       "estimatedResetOn": "{{date}}에서 예상 사용량이 재설정됩니다.",
@@ -3805,6 +3838,13 @@
     },
     "quota": {
       "usedOfTotal": "{{used}} / {{total}}"
+    },
+    "quotaCategory": {
+      "activity": "Promo Pack",
+      "base": "기본 패키지",
+      "empty": "í ë¹ë ìì",
+      "extra": "Extra Pack",
+      "other": "기타"
     }
   },
   "qoder": {
@@ -3889,6 +3929,9 @@
       "desc": "공식 OAuth 로그인, 로컬 가져오기, JSON 가져오기, 로컬 주입 방식의 계정 전환을 지원합니다. 계정 전환 시 Trae 클라이언트의 실제 디스크 기록 규칙에 따라 다시 저장합니다.",
       "permission": "권한 범위: 로컬 Trae storage.json 의 로그인 관련 필드를 읽고 써서 계정 가져오기, 계정 전환 주입, 요금제 표시에 사용합니다. 모든 데이터는 사용자 기기에서만 처리됩니다.",
       "network": "네트워크 범위: OAuth 로그인, 토큰 갱신, 요금제 조회는 Trae 공식 API 를 호출합니다. 로컬 계정 파일이나 원본 저장 데이터는 제3자 서비스로 업로드되지 않습니다."
+    },
+    "columns": {
+      "usage": "사용량"
     }
   },
   "codebuddyCn": {
@@ -4259,5 +4302,9 @@
     "copyCode": "코드 복사",
     "copied": "복사됨",
     "refreshIn": "{{time}}초"
+  },
+  "globalModal": {
+    "ok": "알겠습니다",
+    "title": "주의 사항"
   }
 }

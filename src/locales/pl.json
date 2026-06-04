@@ -225,7 +225,13 @@
     "deleteTagWarning": "Czy na pewno chcesz usunąć ten tag ze wszystkich kont?",
     "expand": "Rozwiń",
     "processing": "Przetwarzanie...",
-    "selectAll": "Zaznacz wszystko"
+    "selectAll": "Zaznacz wszystko",
+    "back": "Wstecz",
+    "edit": "Edytuj",
+    "noData": "Brak danych",
+    "search": "Szukaj...",
+    "status": "Stan",
+    "syncing": "Synchronizowanie..."
   },
   "nav": {
     "overview": "Antigravity IDE",
@@ -759,7 +765,12 @@
       "codexAppSpeedFast": "Szybka",
       "codexAppSpeedLaunch": "Uruchom ponownie Codex",
       "codexAppSpeedSaveFailed": "Nie udało się zapisać szybkości Codex: {{error}}",
-      "codexAppSpeedLaunchFailed": "Nie udało się zrestartować Codex: {{error}}"
+      "codexAppSpeedLaunchFailed": "Nie udało się zrestartować Codex: {{error}}",
+      "account": "Konta",
+      "accountLevelRefreshDisabled": "Wyłączone",
+      "accountLevelRefreshInherit": "Dziedzicz ustawienia platformy",
+      "accountLevelRefreshSummary": "Rozwiń konfigurację",
+      "accountLevelRefreshTitle": "Konfiguracja odświeżania na poziomie konta"
     },
     "network": {
       "apiTitle": "API kokpitu antygrawitacyjnego",
@@ -945,7 +956,9 @@
     "title": "Zarządzanie kontami",
     "subtitle": "Zarządzaj listą swoich kont Antigravity IDE.",
     "total": "Liczba kont: {{count}}",
-    "search": "Szukaj kont...",
+    "search": {
+      "placeholder": "Szukaj kont..."
+    },
     "addAccount": "Dodaj konto",
     "refreshAll": "Odśwież wszystko",
     "export": "Eksportuj",
@@ -1035,7 +1048,16 @@
         "tooMany": "Możesz dodać maksymalnie {{max}} tagów"
       },
       "notesLabel": "Notatka",
-      "notesPlaceholder": "Wpisz notatkę. Pozostaw puste, aby wyczyścić"
+      "notesPlaceholder": "Wpisz notatkę. Pozostaw puste, aby wyczyścić",
+      "proxyLabel": "Proxy konta",
+      "proxyPlaceholder": "Np. 209.127.19.151:8000:użytkownik:hasło lub http://...",
+      "proxyHint": "Indywidualne proxy dla tego konta. Będzie używane zamiast proxy globalnego podczas uruchamiania IDE.",
+      "addHint": "Kliknij, aby dodać",
+      "editHint": "Kliknij, aby zmodyfikować",
+      "globalDeleteHint": "Usuń ten tag globalnie",
+      "globalRenameHint": "Zmień nazwę tego tagu globalnie",
+      "renamePlaceholder": "Wprowadź nową nazwę tagu",
+      "renamingGlobal": "Globalna zmiana nazwy wszystkich istniejących wpisów tagu:"
     },
     "groupByTag": "Grupuj według taga",
     "untagged": "Bez taga",
@@ -2559,7 +2581,8 @@
         "partialDetected": "Aktualnie ustawione jest tylko jedno pole zarządzane: model_context_window={{context}}, model_auto_compact_token_limit={{compact}}. Zapisanie spowoduje przepisanie obu pól według aktualnego schematu.",
         "notSet": "Nie ustawiono"
       },
-      "managePresets": "Presety modeli"
+      "managePresets": "Presety modeli",
+      "noMatchTitle": "Brak pasujących dostawców"
     },
     "quickSwitch": {
       "action": "Szybka zmiana dostawcy",
@@ -2805,6 +2828,11 @@
         "saveSuccess": "Blokady modeli kont zapisane",
         "cardCount": "{{count}} zabl."
       }
+    },
+    "cli": {
+      "launchSuccess": "Pomyślnie uruchomiono Codex CLI",
+      "quickLaunch": "Szybkie uruchomienie CLI",
+      "selectWorkingDir": "Wybierz katalog roboczy Codex CLI"
     }
   },
   "githubCopilot": {
@@ -3069,6 +3097,10 @@
       "title": "Pamięć filtrów",
       "enable": "Zapamiętaj filtry przeglądu kont (bez wyszukiwania)",
       "hint": "Domyślnie wyłączone. Po włączeniu każda platforma zapamięta filtry, tagi i sortowanie."
+    },
+    "codexWindow": {
+      "orDivider": "LUB (wyzwalane w przypadku dowolnego dopasowania)",
+      "primaryWindowMeaning": "primary_window zazwyczaj odnosi się do limitu 5-godzinnego; w przypadku użytkowników darmowych primary_window może odpowiadać limitowi tygodniowemu, co może się różnić w zależności od subskrypcji."
     }
   },
   "quotaAlert": {
@@ -3202,7 +3234,8 @@
     "account": {
       "signedInWith": "Zalogowano się za pomocą {{provider}}",
       "providerUnknown": "Nieznany",
-      "userId": "Identyfikator użytkownika"
+      "userId": "Identyfikator użytkownika",
+      "signedInWithUnknown": "Zalogowano przy użyciu nieznanego konta"
     },
     "credits": {
       "estimatedResetOn": "Szacowane użycie resetuje się {{date}}",
@@ -3805,6 +3838,13 @@
     },
     "quota": {
       "usedOfTotal": "{{used}} / {{total}}"
+    },
+    "quotaCategory": {
+      "activity": "Pakiet promocyjny",
+      "base": "Pakiet podstawowy",
+      "empty": "Brak danych o limicie",
+      "extra": "Pakiet dodatkowy",
+      "other": "Inne"
     }
   },
   "qoder": {
@@ -3889,6 +3929,9 @@
       "desc": "Obsluguje oficjalne logowanie OAuth, import lokalny, import JSON oraz przelaczanie kont przez lokalna iniekcje. Podczas przelaczania dane sa zapisywane zgodnie z rzeczywistymi zasadami zapisu klienta Trae.",
       "permission": "Zakres uprawnien: odczytuje i zapisuje pola zwiazane z logowaniem w lokalnym pliku Trae storage.json na potrzeby importu konta, iniekcji przelaczenia konta i wyswietlania planu. Wszystkie dane sa przetwarzane lokalnie na Twoim urzadzeniu.",
       "network": "Zakres sieci: logowanie OAuth, odswiezanie tokenu i zapytania o plan wywoluja oficjalne API Trae. Lokalne pliki kont i surowa zawartosc magazynu nie sa przesylane do uslug zewnetrznych."
+    },
+    "columns": {
+      "usage": "Użycie"
     }
   },
   "codebuddyCn": {
@@ -4259,5 +4302,9 @@
     "copyCode": "Kopiuj kod",
     "copied": "Skopiowano",
     "refreshIn": "{{time}} s"
+  },
+  "globalModal": {
+    "ok": "Rozumiem",
+    "title": "Uwaga"
   }
 }

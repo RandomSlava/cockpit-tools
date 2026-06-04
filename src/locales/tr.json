@@ -225,7 +225,13 @@
     "deleteTagWarning": "Bu etiketi tüm hesaplardan silmek istediğinizden emin misiniz?",
     "expand": "Genişlet",
     "processing": "İşleniyor...",
-    "selectAll": "Tümünü Seç"
+    "selectAll": "Tümünü Seç",
+    "back": "Geri",
+    "edit": "Düzenle",
+    "noData": "Veri yok",
+    "search": "Ara...",
+    "status": "Durum",
+    "syncing": "Eşitleniyor..."
   },
   "nav": {
     "overview": "Antigravity IDE",
@@ -759,7 +765,12 @@
       "codexAppSpeedFast": "Hızlı",
       "codexAppSpeedLaunch": "Codex'i yeniden başlat",
       "codexAppSpeedSaveFailed": "Codex hızı kaydedilemedi: {{error}}",
-      "codexAppSpeedLaunchFailed": "Codex yeniden başlatılamadı: {{error}}"
+      "codexAppSpeedLaunchFailed": "Codex yeniden başlatılamadı: {{error}}",
+      "account": "Hesaplar",
+      "accountLevelRefreshDisabled": "Devre dışı",
+      "accountLevelRefreshInherit": "Platform ayarlarını devral",
+      "accountLevelRefreshSummary": "Yapılandırmayı genişlet",
+      "accountLevelRefreshTitle": "Hesap düzeyinde yenileme yapılandırması"
     },
     "network": {
       "apiTitle": "Yerçekimine Karşı Kokpit API'si",
@@ -945,7 +956,9 @@
     "title": "Hesap Yönetimi",
     "subtitle": "Antigravity IDE hesap listenizi yönetin.",
     "total": "{{count}} hesap",
-    "search": "Hesaplarda ara...",
+    "search": {
+      "placeholder": "Hesaplarda ara..."
+    },
     "addAccount": "Hesap Ekle",
     "refreshAll": "Tümünü Yenile",
     "export": "Dışa Aktar",
@@ -1035,7 +1048,16 @@
         "tooMany": "En fazla {{max}} etiket ekleyebilirsiniz"
       },
       "notesLabel": "Not",
-      "notesPlaceholder": "Not girin. Temizlemek için boş bırakın"
+      "notesPlaceholder": "Not girin. Temizlemek için boş bırakın",
+      "proxyLabel": "Hesap Ara Sunucusu (Proxy)",
+      "proxyPlaceholder": "Örn. 209.127.19.151:8000:kullanici:sifre veya http://...",
+      "proxyHint": "Bu hesaba özel ara sunucu. IDE başlatılırken genel ara sunucu yerine bu kullanılacaktır.",
+      "addHint": "Eklemek için tıklayın",
+      "editHint": "Değiştirmek için tıklayın",
+      "globalDeleteHint": "Bu etiketi genel olarak sil",
+      "globalRenameHint": "Bu etiketi genel olarak yeniden adlandır",
+      "renamePlaceholder": "Yeni etiket adı girin",
+      "renamingGlobal": "Mevcut tüm etiket kayıtları genel olarak yeniden adlandırılıyor:"
     },
     "groupByTag": "Etikete göre grupla",
     "untagged": "Etiketsiz",
@@ -2559,7 +2581,8 @@
         "partialDetected": "Şu anda yalnızca bir yönetilen alan ayarlanmıştır: model_context_window={{context}}, model_auto_compact_token_limit={{compact}}. Kaydetme, mevcut şemayı kullanarak her iki alanı da yeniden yazacaktır.",
         "notSet": "Ayarlanmadı"
       },
-      "managePresets": "Model ön ayarları"
+      "managePresets": "Model ön ayarları",
+      "noMatchTitle": "Eşleşen sağlayıcı bulunamadı"
     },
     "quickSwitch": {
       "action": "Sağlayıcıyı hızlı değiştir",
@@ -2805,6 +2828,11 @@
         "saveSuccess": "Hesap model engelleri kaydedildi",
         "cardCount": "{{count}} engelli"
       }
+    },
+    "cli": {
+      "launchSuccess": "Codex CLI başarıyla başlatıldı",
+      "quickLaunch": "Hızlı CLI Başlatma",
+      "selectWorkingDir": "Codex CLI çalışma dizinini seçin"
     }
   },
   "githubCopilot": {
@@ -3069,6 +3097,10 @@
       "title": "Filtre hafızası",
       "enable": "Hesap genel görünüm filtrelerini hatırla (arama hariç)",
       "hint": "Varsayılan olarak kapalıdır. Açıldığında her platform için filtreler, etiketler ve sıralama korunur."
+    },
+    "codexWindow": {
+      "orDivider": "VEYA (herhangi biri eşleşirse tetiklenir)",
+      "primaryWindowMeaning": "primary_window genellikle 5 saatlik kotayı ifade eder; ücretsiz kullanıcılar için primary_window, aboneliğe göre değişiklik gösterebilen haftalık kotaya karşılık gelebilir."
     }
   },
   "quotaAlert": {
@@ -3202,7 +3234,8 @@
     "account": {
       "signedInWith": "{{provider}} ile oturum açıldı",
       "providerUnknown": "Bilinmiyor",
-      "userId": "Kullanıcı kimliği"
+      "userId": "Kullanıcı kimliği",
+      "signedInWithUnknown": "Bilinmeyen ile oturum açıldı"
     },
     "credits": {
       "estimatedResetOn": "Tahmini Kullanım {{date}} tarihinde sıfırlanır",
@@ -3805,6 +3838,13 @@
     },
     "quota": {
       "usedOfTotal": "{{used}} / {{total}}"
+    },
+    "quotaCategory": {
+      "activity": "Promosyon Paketi",
+      "base": "Temel Paket",
+      "empty": "Kota verisi yok",
+      "extra": "Ek Paket",
+      "other": "Diğer"
     }
   },
   "qoder": {
@@ -3889,6 +3929,9 @@
       "desc": "Resmi OAuth girisini, yerel ice aktarmayi, JSON ice aktarmayi ve yerel enjeksiyonla hesap degistirmeyi destekler. Hesap degisiminde veriler Trae istemcisinin gercek disk kurallarina gore yeniden yazilir.",
       "permission": "Izin kapsami: hesap ice aktarma, hesap degistirme enjeksiyonu ve plan gosterimi icin yerel Trae storage.json icindeki girisle ilgili alanlari okur ve yazar. Tum veriler cihazinizda yerel olarak islenir.",
       "network": "Ag kapsami: OAuth girisi, belirtec yenileme ve plan sorgulari resmi Trae API'lerini cagirir. Yerel hesap dosyalari ve ham depolama icerigi ucuncu taraf hizmetlere yuklenmez."
+    },
+    "columns": {
+      "usage": "Kullanım"
     }
   },
   "codebuddyCn": {
@@ -4259,5 +4302,9 @@
     "copyCode": "Kodu kopyala",
     "copied": "Kopyalandı",
     "refreshIn": "{{time}} sn"
+  },
+  "globalModal": {
+    "ok": "Anladım",
+    "title": "Bildirim"
   }
 }

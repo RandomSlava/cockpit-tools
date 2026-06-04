@@ -225,7 +225,13 @@
     "deleteTagWarning": "すべてのアカウントからタグを削除してもよろしいですか？",
     "expand": "展開",
     "processing": "処理中...",
-    "selectAll": "すべて選択"
+    "selectAll": "すべて選択",
+    "back": "戻る",
+    "edit": "編集",
+    "noData": "データがありません",
+    "search": "検索...",
+    "status": "ステータス",
+    "syncing": "同期しています..."
   },
   "nav": {
     "overview": "Antigravity IDE",
@@ -759,7 +765,12 @@
       "codexAppSpeedFast": "高速",
       "codexAppSpeedLaunch": "Codex を再起動",
       "codexAppSpeedSaveFailed": "Codex 速度の保存に失敗しました: {{error}}",
-      "codexAppSpeedLaunchFailed": "Codex の再起動に失敗しました: {{error}}"
+      "codexAppSpeedLaunchFailed": "Codex の再起動に失敗しました: {{error}}",
+      "account": "口座",
+      "accountLevelRefreshDisabled": "無効",
+      "accountLevelRefreshInherit": "プラットフォーム設定を継承する",
+      "accountLevelRefreshSummary": "設定を展開",
+      "accountLevelRefreshTitle": "アカウントレベルの更新設定"
     },
     "network": {
       "apiTitle": "反重力コックピット API",
@@ -945,7 +956,9 @@
     "title": "アカウント管理",
     "subtitle": "Antigravity IDE アカウントの一覧を管理します。",
     "total": "合計 {{count}} 個のアカウント",
-    "search": "アカウントを検索...",
+    "search": {
+      "placeholder": "アカウントを検索。"
+    },
     "addAccount": "アカウントを追加",
     "refreshAll": "すべて更新",
     "export": "エクスポート",
@@ -1035,7 +1048,16 @@
         "tooMany": "タグは最大{{max}}件まで追加できます"
       },
       "notesLabel": "メモ",
-      "notesPlaceholder": "メモを入力。空欄でクリア"
+      "notesPlaceholder": "メモを入力。空欄でクリア",
+      "proxyLabel": "アカウントプロキシ",
+      "proxyPlaceholder": "例： 209.127.19.151: 8000: user: passまたはhttp ://...",
+      "proxyHint": "このアカウントの個々のプロキシ。IDEを起動するときに、グローバルプロキシの代わりに使用されます。",
+      "addHint": "クリックして追加",
+      "editHint": "クリックして変更",
+      "globalDeleteHint": "このタグをグローバルに削除する",
+      "globalRenameHint": "このタグの名前をグローバルに変更する",
+      "renamePlaceholder": "新しい名前を入力する",
+      "renamingGlobal": "グローバルに既存のすべてのタグレコードの名前を変更する："
     },
     "groupByTag": "タグでグループ化",
     "untagged": "タグなし",
@@ -2559,7 +2581,8 @@
         "partialDetected": "現在設定されている管理フィールドは、model_context_window={{context}}、model_auto_compact_token_limit={{compact}} の 1 つだけです。保存すると、現在のスキームを使用して両方のフィールドが書き換えられます。",
         "notSet": "未設定"
       },
-      "managePresets": "モデルプリセット"
+      "managePresets": "モデルプリセット",
+      "noMatchTitle": "一致するプロバイダーがありません"
     },
     "quickSwitch": {
       "action": "プロバイダーをクイック切り替え",
@@ -2805,6 +2828,11 @@
         "saveSuccess": "アカウント別モデル除外を保存しました",
         "cardCount": "{{count}} 件除外"
       }
+    },
+    "cli": {
+      "launchSuccess": "Codex CLIが正常に起動しました",
+      "quickLaunch": "クイックスタートAsk player who should start game",
+      "selectWorkingDir": "Codex CLI作業ディレクトリを選択します"
     }
   },
   "githubCopilot": {
@@ -3069,6 +3097,10 @@
       "title": "フィルター記憶",
       "enable": "アカウント概要のフィルターを記憶（検索を除く）",
       "hint": "既定ではオフ。オンにすると、プラットフォームごとにフィルター・タグ・並び順を保持します。"
+    },
+    "codexWindow": {
+      "orDivider": "OR （一致するものがあればトリガー）",
+      "primaryWindowMeaning": "primary_windowは一般的に5時間のクォータを指します。無料ユーザーの場合、primary_windowは週ごとのクォータに対応する場合があり、サブスクリプションによって異なる場合があります。"
     }
   },
   "quotaAlert": {
@@ -3202,7 +3234,8 @@
     "account": {
       "signedInWith": "{{provider}} でサインインしました",
       "providerUnknown": "未知",
-      "userId": "ユーザーID"
+      "userId": "ユーザーID",
+      "signedInWithUnknown": "不明なアカウントでサインインしました"
     },
     "credits": {
       "estimatedResetOn": "推定使用量は {{date}} にリセットされます",
@@ -3805,6 +3838,13 @@
     },
     "quota": {
       "usedOfTotal": "{{used}} / {{total}}"
+    },
+    "quotaCategory": {
+      "activity": "プロモーションパック",
+      "base": "ベースパッケージ",
+      "empty": "ã¯ã©ã¼ã¿ãªã",
+      "extra": "エクストラリッチパック",
+      "other": "その他"
     }
   },
   "qoder": {
@@ -3889,6 +3929,9 @@
       "desc": "公式 OAuth ログイン、ローカルインポート、JSON インポート、ローカル注入によるアカウント切り替えに対応しています。切り替え時は Trae クライアントの実際の保存ルールに従って書き戻します。",
       "permission": "権限範囲: ローカルの Trae storage.json 内のログイン関連フィールドを読み書きし、アカウントのインポート、切り替え注入、プラン表示に使用します。すべてのデータはローカル端末上で処理されます。",
       "network": "ネットワーク範囲: OAuth ログイン、トークン更新、プラン照会では Trae 公式 API を呼び出します。ローカルのアカウントファイルや生の保存内容を第三者サービスへアップロードすることはありません。"
+    },
+    "columns": {
+      "usage": "使用"
     }
   },
   "codebuddyCn": {
@@ -4259,5 +4302,9 @@
     "copyCode": "コードをコピー",
     "copied": "コピー済み",
     "refreshIn": "{{time}}秒"
+  },
+  "globalModal": {
+    "ok": "了解しました",
+    "title": "注意表示"
   }
 }

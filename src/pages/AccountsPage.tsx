@@ -419,6 +419,7 @@ export function AccountsPage({ onNavigate }: AccountsPageProps) {
   const [oauthCallbackSubmitting, setOauthCallbackSubmitting] = useState(false)
   const [oauthCallbackError, setOauthCallbackError] = useState<string | null>(null)
   const [tokenInput, setTokenInput] = useState('')
+  const [oauthProxy, setOauthProxy] = useState('')
   const [deleteConfirm, setDeleteConfirm] = useState<{
     ids: string[]
     message: string
@@ -1350,6 +1351,7 @@ export function AccountsPage({ onNavigate }: AccountsPageProps) {
     setAddStatus('idle')
     setAddMessage('')
     setTokenInput('')
+    setOauthProxy('')
     setOauthUrlCopied(false)
     setOauthCallbackInput('')
     setOauthCallbackSubmitting(false)
@@ -1437,7 +1439,14 @@ export function AccountsPage({ onNavigate }: AccountsPageProps) {
 
   const handleOAuthStart = async () => {
     await runModalAction(t('modals.import.oauthAction'), async () => {
-      await startOAuthLogin()
+      const account = await startOAuthLogin()
+      if (account && oauthProxy.trim()) {
+        try {
+          await accountService.updateAccountProxy(account.id, oauthProxy.trim())
+        } catch (err) {
+          console.error('Failed to set proxy for new account:', err)
+        }
+      }
       await fetchAccounts()
       await fetchCurrentAccount()
     })
@@ -1445,7 +1454,14 @@ export function AccountsPage({ onNavigate }: AccountsPageProps) {
 
   const handleOAuthComplete = async () => {
     await runModalAction(t('modals.import.oauthAction'), async () => {
-      await accountService.completeOAuthLogin()
+      const account = await accountService.completeOAuthLogin()
+      if (account && oauthProxy.trim()) {
+        try {
+          await accountService.updateAccountProxy(account.id, oauthProxy.trim())
+        } catch (err) {
+          console.error('Failed to set proxy for new account:', err)
+        }
+      }
       await fetchAccounts()
       await fetchCurrentAccount()
     })
@@ -1844,7 +1860,14 @@ export function AccountsPage({ onNavigate }: AccountsPageProps) {
         })
       )
       try {
-        const account = await accountService.addAccountWithToken(tokens[i])
+        let account = await accountService.addAccountWithToken(tokens[i])
+        if (oauthProxy.trim()) {
+          try {
+            account = await accountService.updateAccountProxy(account.id, oauthProxy.trim())
+          } catch (err) {
+            console.error('Failed to set proxy for imported token:', err)
+          }
+        }
         importedAccounts.push(account)
         success += 1
       } catch (e) {
@@ -3667,6 +3690,20 @@ export function AccountsPage({ onNavigate }: AccountsPageProps) {
                   <Database size={14} /> {t('accounts.tabs.import')}
                 </button>
               </div>
+
+              {(addTab === 'oauth' || addTab === 'token') && (
+                <div className="oauth-link" style={{ marginBottom: '16px' }}>
+                  <label>{t('accounts.proxy.label', '代理服务器 (可选)')}</label>
+                  <div className="oauth-link-row">
+                    <input
+                      type="text"
+                      value={oauthProxy}
+                      onChange={(e) => setOauthProxy(e.target.value)}
+                      placeholder={t('accounts.proxy.placeholder', '格式: ip:port 或 ip:port:user:pass 或 http://... 或 socks5://...')}
+                    />
+                  </div>
+                </div>
+              )}
 
               {addTab === 'oauth' && (
                 <div className="add-panel">

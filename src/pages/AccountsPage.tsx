@@ -2362,6 +2362,17 @@ export function AccountsPage({ onNavigate }: AccountsPageProps) {
             </div>
           )}
 
+          {account.proxy_url && (
+            <div className="card-proxy" style={{ marginTop: '-4px', display: 'flex', alignItems: 'center', gap: '4px' }}>
+              <span className="proxy-icon" style={{ display: 'inline-flex', color: 'var(--text-muted)', opacity: 0.8 }}>
+                <Globe size={11} />
+              </span>
+              <span className="proxy-text" title={account.proxy_url} style={{ fontSize: '11px', color: 'var(--text-muted)', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', opacity: 0.8 }}>
+                {account.proxy_url}
+              </span>
+            </div>
+          )}
+
           <div className="card-quota-grid">
             {isForbidden ? (
               <div className="quota-forbidden" title={forbiddenTitle}>

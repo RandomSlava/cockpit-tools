@@ -420,6 +420,7 @@ export function AccountsPage({ onNavigate }: AccountsPageProps) {
   const [oauthCallbackError, setOauthCallbackError] = useState<string | null>(null)
   const [tokenInput, setTokenInput] = useState('')
   const [oauthProxy, setOauthProxy] = useState('')
+  const [oauthFpId, setOauthFpId] = useState('original')
   const [deleteConfirm, setDeleteConfirm] = useState<{
     ids: string[]
     message: string
@@ -582,6 +583,8 @@ export function AccountsPage({ onNavigate }: AccountsPageProps) {
   const oauthUrlRef = useRef(oauthUrl)
   const addStatusRef = useRef(addStatus)
   const activeGroupIdRef = useRef(activeGroupId)
+  const oauthProxyRef = useRef(oauthProxy)
+  const oauthFpIdRef = useRef(oauthFpId)
   const verificationHistoryRequestIdRef = useRef(0)
   const colorPickerRef = useRef<HTMLDivElement>(null)
 
@@ -591,7 +594,9 @@ export function AccountsPage({ onNavigate }: AccountsPageProps) {
     oauthUrlRef.current = oauthUrl
     addStatusRef.current = addStatus
     activeGroupIdRef.current = activeGroupId
-  }, [showAddModal, addTab, oauthUrl, addStatus, activeGroupId])
+    oauthProxyRef.current = oauthProxy
+    oauthFpIdRef.current = oauthFpId
+  }, [showAddModal, addTab, oauthUrl, addStatus, activeGroupId, oauthProxy, oauthFpId])
 
   useEffect(() => {
     const handleFeatureUnlockChanged = (event: Event) => {
@@ -1206,7 +1211,24 @@ export function AccountsPage({ onNavigate }: AccountsPageProps) {
       setAddStatus('loading')
       setAddMessage(t('accounts.oauth.authorizing'))
       try {
-        const newAccount = await accountService.completeOAuthLogin()
+        let newAccount = await accountService.completeOAuthLogin()
+        if (newAccount) {
+          if (oauthProxyRef.current.trim()) {
+            try {
+              newAccount = await accountService.updateAccountProxy(newAccount.id, oauthProxyRef.current.trim())
+            } catch (err) {
+              console.error('Failed to set proxy for new account in redirect listener:', err)
+            }
+          }
+          if (oauthFpIdRef.current && oauthFpIdRef.current !== 'original') {
+            try {
+              await accountService.bindAccountFingerprint(newAccount.id, oauthFpIdRef.current)
+              newAccount.fingerprint_id = oauthFpIdRef.current
+            } catch (err) {
+              console.error('Failed to bind fingerprint for new account in redirect listener:', err)
+            }
+          }
+        }
         await fetchAccounts()
         await fetchCurrentAccount()
         // 如果在文件夹内添加，自动归入当前文件夹
@@ -1352,6 +1374,7 @@ export function AccountsPage({ onNavigate }: AccountsPageProps) {
     setAddMessage('')
     setTokenInput('')
     setOauthProxy('')
+    setOauthFpId('original')
     setOauthUrlCopied(false)
     setOauthCallbackInput('')
     setOauthCallbackSubmitting(false)
@@ -1440,11 +1463,20 @@ export function AccountsPage({ onNavigate }: AccountsPageProps) {
   const handleOAuthStart = async () => {
     await runModalAction(t('modals.import.oauthAction'), async () => {
       const account = await startOAuthLogin()
-      if (account && oauthProxy.trim()) {
-        try {
-          await accountService.updateAccountProxy(account.id, oauthProxy.trim())
-        } catch (err) {
-          console.error('Failed to set proxy for new account:', err)
+      if (account) {
+        if (oauthProxy.trim()) {
+          try {
+            await accountService.updateAccountProxy(account.id, oauthProxy.trim())
+          } catch (err) {
+            console.error('Failed to set proxy for new account:', err)
+          }
+        }
+        if (oauthFpId && oauthFpId !== 'original') {
+          try {
+            await accountService.bindAccountFingerprint(account.id, oauthFpId)
+          } catch (err) {
+            console.error('Failed to bind fingerprint for new account:', err)
+          }
         }
       }
       await fetchAccounts()
@@ -1455,11 +1487,20 @@ export function AccountsPage({ onNavigate }: AccountsPageProps) {
   const handleOAuthComplete = async () => {
     await runModalAction(t('modals.import.oauthAction'), async () => {
       const account = await accountService.completeOAuthLogin()
-      if (account && oauthProxy.trim()) {
-        try {
-          await accountService.updateAccountProxy(account.id, oauthProxy.trim())
-        } catch (err) {
-          console.error('Failed to set proxy for new account:', err)
+      if (account) {
+        if (oauthProxy.trim()) {
+          try {
+            await accountService.updateAccountProxy(account.id, oauthProxy.trim())
+          } catch (err) {
+            console.error('Failed to set proxy for new account:', err)
+          }
+        }
+        if (oauthFpId && oauthFpId !== 'original') {
+          try {
+            await accountService.bindAccountFingerprint(account.id, oauthFpId)
+          } catch (err) {
+            console.error('Failed to bind fingerprint for new account:', err)
+          }
         }
       }
       await fetchAccounts()
@@ -1866,6 +1907,14 @@ export function AccountsPage({ onNavigate }: AccountsPageProps) {
             account = await accountService.updateAccountProxy(account.id, oauthProxy.trim())
           } catch (err) {
             console.error('Failed to set proxy for imported token:', err)
+          }
+        }
+        if (oauthFpId && oauthFpId !== 'original') {
+          try {
+            await accountService.bindAccountFingerprint(account.id, oauthFpId)
+            account.fingerprint_id = oauthFpId
+          } catch (err) {
+            console.error('Failed to bind fingerprint for imported token:', err)
           }
         }
         importedAccounts.push(account)
@@ -3692,17 +3741,46 @@ export function AccountsPage({ onNavigate }: AccountsPageProps) {
               </div>
 
               {(addTab === 'oauth' || addTab === 'token') && (
-                <div className="oauth-link" style={{ marginBottom: '16px' }}>
-                  <label>{t('accounts.tagModal.proxyLabel', 'Proxy')}</label>
-                  <div className="oauth-link-row">
-                    <input
-                      type="text"
-                      value={oauthProxy}
-                      onChange={(e) => setOauthProxy(e.target.value)}
-                      placeholder={t('accounts.tagModal.proxyPlaceholder', 'E.g. 209.127.19.151:8000:user:pass or http://...')}
-                    />
+                <>
+                  <div className="oauth-link" style={{ marginBottom: '16px' }}>
+                    <label>{t('accounts.tagModal.proxyLabel', 'Proxy')}</label>
+                    <div className="oauth-link-row">
+                      <input
+                        type="text"
+                        value={oauthProxy}
+                        onChange={(e) => setOauthProxy(e.target.value)}
+                        placeholder={t('accounts.tagModal.proxyPlaceholder', 'E.g. 209.127.19.151:8000:user:pass or http://...')}
+                      />
+                    </div>
                   </div>
-                </div>
+                  <div className="oauth-link" style={{ marginBottom: '16px' }}>
+                    <label>{t('accounts.columns.fingerprint', '设备指纹')}</label>
+                    <div className="oauth-link-row">
+                      <select
+                        style={{
+                          flex: 1,
+                          height: '38px',
+                          padding: '0 12px',
+                          border: '1px solid var(--border)',
+                          borderRadius: 'var(--radius-md)',
+                          background: 'var(--bg-input)',
+                          color: 'var(--text-primary)',
+                          outline: 'none',
+                          fontSize: '13px'
+                        }}
+                        value={oauthFpId}
+                        onChange={(e) => setOauthFpId(e.target.value)}
+                      >
+                        <option value="original">{t('modals.fingerprint.original', '使用本机原始指纹')}</option>
+                        {fingerprints.map((fp) => (
+                          <option key={fp.id} value={fp.id}>
+                            {fp.name}
+                          </option>
+                        ))}
+                      </select>
+                    </div>
+                  </div>
+                </>
               )}
 
               {addTab === 'oauth' && (

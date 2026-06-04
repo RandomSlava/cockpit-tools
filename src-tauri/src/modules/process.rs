@@ -991,6 +991,40 @@ fn managed_proxy_env_pairs() -> Vec<(&'static str, String)> {
     let config = config::get_user_config();
     let mut pairs = Vec::new();
 
+    // Account-level proxy takes priority over global proxy
+    if let Ok(Some(account)) = crate::modules::account::get_current_account() {
+        if let Some(proxy_url) = account.proxy_url {
+            let proxy_url = proxy_url.trim().to_string();
+            if !proxy_url.is_empty() {
+                pairs.extend([
+                    ("http_proxy", proxy_url.clone()),
+                    ("https_proxy", proxy_url.clone()),
+                    ("HTTP_PROXY", proxy_url.clone()),
+                    ("HTTPS_PROXY", proxy_url.clone()),
+                    ("all_proxy", proxy_url.clone()),
+                    ("ALL_PROXY", proxy_url),
+                ]);
+
+                let no_proxy_seed = [
+                    std::env::var("no_proxy").unwrap_or_default(),
+                    std::env::var("NO_PROXY").unwrap_or_default(),
+                    config.global_proxy_no_proxy,
+                ]
+                .into_iter()
+                .filter(|value| !value.trim().is_empty())
+                .collect::<Vec<_>>()
+                .join(",");
+                let no_proxy = crate::modules::codex_protocol::merge_local_no_proxy(&no_proxy_seed);
+                if !no_proxy.is_empty() {
+                    pairs.push(("no_proxy", no_proxy.clone()));
+                    pairs.push(("NO_PROXY", no_proxy));
+                }
+
+                return pairs;
+            }
+        }
+    }
+
     let proxy_url = config.global_proxy_url.trim();
     if config.global_proxy_enabled && !proxy_url.is_empty() {
         pairs.extend([
@@ -1022,6 +1056,7 @@ fn managed_proxy_env_pairs() -> Vec<(&'static str, String)> {
 
     pairs
 }
+
 
 fn log_managed_proxy_injection(mode: &str, cmd: &Command, pairs: &[(&'static str, String)]) {
     if pairs.is_empty() {

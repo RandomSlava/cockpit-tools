@@ -35,6 +35,9 @@ pub struct Account {
     pub quota_error: Option<QuotaErrorInfo>,
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub usage_updated_at: Option<i64>,
+    /// Per-account HTTP proxy URL (e.g. "http://user:pass@host:port")
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub proxy_url: Option<String>,
     pub created_at: i64,
     pub last_used: i64,
 }
@@ -61,6 +64,7 @@ impl Account {
             protected_models: HashSet::new(),
             quota_error: None,
             usage_updated_at: None,
+            proxy_url: None,
             created_at: now,
             last_used: now,
         }

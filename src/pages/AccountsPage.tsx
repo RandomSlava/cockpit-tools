@@ -3693,13 +3693,13 @@ export function AccountsPage({ onNavigate }: AccountsPageProps) {
 
               {(addTab === 'oauth' || addTab === 'token') && (
                 <div className="oauth-link" style={{ marginBottom: '16px' }}>
-                  <label>{t('accounts.proxy.label', '代理服务器 (可选)')}</label>
+                  <label>{t('accounts.tagModal.proxyLabel', 'Proxy')}</label>
                   <div className="oauth-link-row">
                     <input
                       type="text"
                       value={oauthProxy}
                       onChange={(e) => setOauthProxy(e.target.value)}
-                      placeholder={t('accounts.proxy.placeholder', '格式: ip:port 或 ip:port:user:pass 或 http://... 或 socks5://...')}
+                      placeholder={t('accounts.tagModal.proxyPlaceholder', 'E.g. 209.127.19.151:8000:user:pass or http://...')}
                     />
                   </div>
                 </div>

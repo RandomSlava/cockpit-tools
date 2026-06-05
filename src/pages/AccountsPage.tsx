@@ -420,7 +420,7 @@ export function AccountsPage({ onNavigate }: AccountsPageProps) {
   const [oauthCallbackError, setOauthCallbackError] = useState<string | null>(null)
   const [tokenInput, setTokenInput] = useState('')
   const [oauthProxy, setOauthProxy] = useState('')
-  const [oauthFpId, setOauthFpId] = useState('original')
+  const [oauthFpId, setOauthFpId] = useState('auto')
   const [deleteConfirm, setDeleteConfirm] = useState<{
     ids: string[]
     message: string
@@ -1220,7 +1220,16 @@ export function AccountsPage({ onNavigate }: AccountsPageProps) {
               console.error('Failed to set proxy for new account in redirect listener:', err)
             }
           }
-          if (oauthFpIdRef.current && oauthFpIdRef.current !== 'original') {
+          if (oauthFpIdRef.current === 'auto') {
+            try {
+              const fpName = `fp_${newAccount.email}`
+              const fp = await accountService.generateNewFingerprint(fpName)
+              await accountService.bindAccountFingerprint(newAccount.id, fp.id)
+              newAccount.fingerprint_id = fp.id
+            } catch (err) {
+              console.error('Failed to auto-generate and bind fingerprint in redirect listener:', err)
+            }
+          } else if (oauthFpIdRef.current && oauthFpIdRef.current !== 'original') {
             try {
               await accountService.bindAccountFingerprint(newAccount.id, oauthFpIdRef.current)
               newAccount.fingerprint_id = oauthFpIdRef.current
@@ -1374,7 +1383,7 @@ export function AccountsPage({ onNavigate }: AccountsPageProps) {
     setAddMessage('')
     setTokenInput('')
     setOauthProxy('')
-    setOauthFpId('original')
+    setOauthFpId('auto')
     setOauthUrlCopied(false)
     setOauthCallbackInput('')
     setOauthCallbackSubmitting(false)
@@ -1471,7 +1480,15 @@ export function AccountsPage({ onNavigate }: AccountsPageProps) {
             console.error('Failed to set proxy for new account:', err)
           }
         }
-        if (oauthFpId && oauthFpId !== 'original') {
+        if (oauthFpId === 'auto') {
+          try {
+            const fpName = `fp_${account.email}`
+            const fp = await accountService.generateNewFingerprint(fpName)
+            await accountService.bindAccountFingerprint(account.id, fp.id)
+          } catch (err) {
+            console.error('Failed to auto-generate and bind fingerprint for new account:', err)
+          }
+        } else if (oauthFpId && oauthFpId !== 'original') {
           try {
             await accountService.bindAccountFingerprint(account.id, oauthFpId)
           } catch (err) {
@@ -1495,7 +1512,15 @@ export function AccountsPage({ onNavigate }: AccountsPageProps) {
             console.error('Failed to set proxy for new account:', err)
           }
         }
-        if (oauthFpId && oauthFpId !== 'original') {
+        if (oauthFpId === 'auto') {
+          try {
+            const fpName = `fp_${account.email}`
+            const fp = await accountService.generateNewFingerprint(fpName)
+            await accountService.bindAccountFingerprint(account.id, fp.id)
+          } catch (err) {
+            console.error('Failed to auto-generate and bind fingerprint for new account:', err)
+          }
+        } else if (oauthFpId && oauthFpId !== 'original') {
           try {
             await accountService.bindAccountFingerprint(account.id, oauthFpId)
           } catch (err) {
@@ -1909,7 +1934,16 @@ export function AccountsPage({ onNavigate }: AccountsPageProps) {
             console.error('Failed to set proxy for imported token:', err)
           }
         }
-        if (oauthFpId && oauthFpId !== 'original') {
+        if (oauthFpId === 'auto') {
+          try {
+            const fpName = `fp_${account.email}`
+            const fp = await accountService.generateNewFingerprint(fpName)
+            await accountService.bindAccountFingerprint(account.id, fp.id)
+            account.fingerprint_id = fp.id
+          } catch (err) {
+            console.error('Failed to auto-generate and bind fingerprint for imported token:', err)
+          }
+        } else if (oauthFpId && oauthFpId !== 'original') {
           try {
             await accountService.bindAccountFingerprint(account.id, oauthFpId)
             account.fingerprint_id = oauthFpId
@@ -3771,6 +3805,7 @@ export function AccountsPage({ onNavigate }: AccountsPageProps) {
                         value={oauthFpId}
                         onChange={(e) => setOauthFpId(e.target.value)}
                       >
+                        <option value="auto">{t('accounts.fingerprint.auto', 'Автогенерация нового отпечатка')}</option>
                         <option value="original">{t('modals.fingerprint.original', '使用本机原始指纹')}</option>
                         {fingerprints.map((fp) => (
                           <option key={fp.id} value={fp.id}>

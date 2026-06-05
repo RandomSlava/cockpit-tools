@@ -1057,7 +1057,10 @@
       "globalDeleteHint": "Xóa thẻ này trên toàn cục",
       "globalRenameHint": "Đổi tên thẻ này trên toàn cục",
       "renamePlaceholder": "Nhập tên thẻ mới",
-      "renamingGlobal": "Đang đổi tên tất cả các bản ghi thẻ hiện có trên toàn cục:"
+      "renamingGlobal": "Đang đổi tên tất cả các bản ghi thẻ hiện có trên toàn cục:",
+      "twoFactorLabel": "2FA Secret (Base32) [vi]",
+      "twoFactorPlaceholder": "Enter 2FA secret (Base32) [vi]",
+      "twoFactorHint": "Leave empty if not using two-factor authentication. [vi]"
     },
     "groupByTag": "Nhóm theo thẻ",
     "untagged": "Chưa gắn thẻ",

@@ -1057,7 +1057,10 @@
       "globalDeleteHint": "Smazat tuto značku globálně",
       "globalRenameHint": "Přejmenovat tuto značku globálně",
       "renamePlaceholder": "Zadejte nový název:",
-      "renamingGlobal": "Globální přejmenování všech existujících záznamů štítků:"
+      "renamingGlobal": "Globální přejmenování všech existujících záznamů štítků:",
+      "twoFactorLabel": "2FA Secret (Base32) [cs]",
+      "twoFactorPlaceholder": "Enter 2FA secret (Base32) [cs]",
+      "twoFactorHint": "Leave empty if not using two-factor authentication. [cs]"
     },
     "groupByTag": "Seskupit podle štítku",
     "untagged": "Bez štítku",

@@ -471,6 +471,16 @@ pub fn update_account_proxy(account_id: &str, proxy_url: Option<String>) -> Resu
     Ok(account)
 }
 
+/// 更新账号 2FA 密钥
+pub fn update_account_two_factor_secret(account_id: &str, two_factor_secret: Option<String>) -> Result<Account, String> {
+    let mut account = load_account(account_id)?;
+    let trimmed = two_factor_secret.map(|s| s.trim().to_string()).filter(|s| !s.is_empty());
+    account.two_factor_secret = trimmed;
+    save_account(&account)?;
+    Ok(account)
+}
+
+
 /// 列出所有账号
 pub fn list_accounts() -> Result<Vec<Account>, String> {
     if let Some(accounts) = read_list_accounts_cache() {

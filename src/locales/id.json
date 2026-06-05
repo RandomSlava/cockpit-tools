@@ -1103,7 +1103,10 @@
       "globalDeleteHint": "Hapus tag ini secara global",
       "globalRenameHint": "Ganti nama tag ini secara global",
       "renamePlaceholder": "Masukkan nama tag",
-      "renamingGlobal": "Mengubah nama semua catatan tag yang ada secara global:"
+      "renamingGlobal": "Mengubah nama semua catatan tag yang ada secara global:",
+      "twoFactorLabel": "2FA Secret (Base32) [id]",
+      "twoFactorPlaceholder": "Enter 2FA secret (Base32) [id]",
+      "twoFactorHint": "Leave empty if not using two-factor authentication. [id]"
     },
     "groupByTag": "Kelompokkan berdasarkan tag",
     "untagged": "Tanpa Tag",

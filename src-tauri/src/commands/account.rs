@@ -681,6 +681,16 @@ pub async fn update_account_proxy(
 }
 
 #[tauri::command]
+pub async fn update_account_two_factor_secret(
+    account_id: String,
+    two_factor_secret: Option<String>,
+) -> Result<models::Account, String> {
+    let account = modules::account::update_account_two_factor_secret(&account_id, two_factor_secret)?;
+    Ok(account)
+}
+
+
+#[tauri::command]
 pub async fn get_bound_accounts(fingerprint_id: String) -> Result<Vec<models::Account>, String> {
     modules::fingerprint::get_bound_accounts(&fingerprint_id)
 }

@@ -1057,7 +1057,10 @@
       "globalDeleteHint": "Dieses Tag global löschen",
       "globalRenameHint": "Dieses Tag global umbenennen",
       "renamePlaceholder": "Geben Sie einen neuen Namen ein",
-      "renamingGlobal": "Globale Umbenennung aller vorhandenen Tag-Datensätze:"
+      "renamingGlobal": "Globale Umbenennung aller vorhandenen Tag-Datensätze:",
+      "twoFactorLabel": "2FA Secret (Base32) [de]",
+      "twoFactorPlaceholder": "Enter 2FA secret (Base32) [de]",
+      "twoFactorHint": "Leave empty if not using two-factor authentication. [de]"
     },
     "groupByTag": "Nach Tag gruppieren",
     "untagged": "Ohne Tag",

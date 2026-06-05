@@ -1057,7 +1057,10 @@
       "globalDeleteHint": "Excluir esta tag globalmente",
       "globalRenameHint": "Renomear esta tag globalmente",
       "renamePlaceholder": "Digite o novo nome da tag",
-      "renamingGlobal": "Renomeando globalmente todos os registros da tag:"
+      "renamingGlobal": "Renomeando globalmente todos os registros da tag:",
+      "twoFactorLabel": "2FA Secret (Base32) [pt-br]",
+      "twoFactorPlaceholder": "Enter 2FA secret (Base32) [pt-br]",
+      "twoFactorHint": "Leave empty if not using two-factor authentication. [pt-br]"
     },
     "groupByTag": "Agrupar por tag",
     "untagged": "Sem tag",

@@ -1103,7 +1103,10 @@
       "globalDeleteHint": "全局删除此标签",
       "globalRenameHint": "全局重命名此标签",
       "renamePlaceholder": "输入新的标签名称",
-      "renamingGlobal": "正在全局重命名已存在标签所有账号记录："
+      "renamingGlobal": "正在全局重命名已存在标签所有账号记录：",
+      "twoFactorLabel": "2FA 密钥 (Base32)",
+      "twoFactorPlaceholder": "输入 2FA 密钥 (Base32)",
+      "twoFactorHint": "如果不使用双重身份验证，请留空。"
     },
     "groupByTag": "按标签分组展示",
     "untagged": "默认分组",

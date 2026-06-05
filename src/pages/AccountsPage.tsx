@@ -43,6 +43,7 @@ import { useTranslation, Trans } from 'react-i18next'
 import { useAccountStore } from '../stores/useAccountStore'
 import * as accountService from '../services/accountService'
 import { FingerprintWithStats, Account } from '../types/account'
+import { AccountMfaBadge } from '../components/AccountMfaBadge'
 import { Page } from '../types/navigation'
 import {
   getAntigravityTierBadge,
@@ -420,6 +421,7 @@ export function AccountsPage({ onNavigate }: AccountsPageProps) {
   const [oauthCallbackError, setOauthCallbackError] = useState<string | null>(null)
   const [tokenInput, setTokenInput] = useState('')
   const [oauthProxy, setOauthProxy] = useState('')
+  const [oauthTwoFactorSecret, setOauthTwoFactorSecret] = useState('')
   const [oauthFpId, setOauthFpId] = useState('auto')
   const [deleteConfirm, setDeleteConfirm] = useState<{
     ids: string[]
@@ -1383,6 +1385,7 @@ export function AccountsPage({ onNavigate }: AccountsPageProps) {
     setAddMessage('')
     setTokenInput('')
     setOauthProxy('')
+    setOauthTwoFactorSecret('')
     setOauthFpId('auto')
     setOauthUrlCopied(false)
     setOauthCallbackInput('')
@@ -1480,6 +1483,13 @@ export function AccountsPage({ onNavigate }: AccountsPageProps) {
             console.error('Failed to set proxy for new account:', err)
           }
         }
+        if (oauthTwoFactorSecret.trim()) {
+          try {
+            await accountService.updateAccountTwoFactorSecret(account.id, oauthTwoFactorSecret.trim())
+          } catch (err) {
+            console.error('Failed to set 2FA secret for new account:', err)
+          }
+        }
         if (oauthFpId === 'auto') {
           try {
             const fpName = `fp_${account.email || account.id}`
@@ -1510,6 +1520,13 @@ export function AccountsPage({ onNavigate }: AccountsPageProps) {
             await accountService.updateAccountProxy(account.id, oauthProxy.trim())
           } catch (err) {
             console.error('Failed to set proxy for new account:', err)
+          }
+        }
+        if (oauthTwoFactorSecret.trim()) {
+          try {
+            await accountService.updateAccountTwoFactorSecret(account.id, oauthTwoFactorSecret.trim())
+          } catch (err) {
+            console.error('Failed to set 2FA secret for new account:', err)
           }
         }
         if (oauthFpId === 'auto') {
@@ -1934,6 +1951,13 @@ export function AccountsPage({ onNavigate }: AccountsPageProps) {
             console.error('Failed to set proxy for imported token:', err)
           }
         }
+        if (oauthTwoFactorSecret.trim()) {
+          try {
+            account = await accountService.updateAccountTwoFactorSecret(account.id, oauthTwoFactorSecret.trim())
+          } catch (err) {
+            console.error('Failed to set 2FA secret for imported token:', err)
+          }
+        }
         if (oauthFpId === 'auto') {
           try {
             const fpName = `fp_${account.email || account.id}`
@@ -2187,12 +2211,13 @@ export function AccountsPage({ onNavigate }: AccountsPageProps) {
     setShowTagModal(accountId);
   };
 
-  const handleSaveTags = async (tags: string[], notes?: string, proxy?: string) => {
+  const handleSaveTags = async (tags: string[], notes?: string, proxy?: string, twoFactorSecret?: string) => {
     if (!showTagModal) return;
     const scrollY = window.scrollY
     const accountId = showTagModal
     await accountService.updateAccountNotes(accountId, notes ?? '')
     await accountService.updateAccountProxy(accountId, proxy ?? null)
+    await accountService.updateAccountTwoFactorSecret(accountId, twoFactorSecret || null)
     await updateAccountTags(accountId, tags);
     setShowTagModal(null);
     window.requestAnimationFrame(() => {
@@ -2477,6 +2502,10 @@ export function AccountsPage({ onNavigate }: AccountsPageProps) {
                 {account.proxy_url}
               </span>
             </div>
+          )}
+
+          {account.two_factor_secret && (
+            <AccountMfaBadge secret={account.two_factor_secret} />
           )}
 
           <div className="card-quota-grid">
@@ -3815,6 +3844,17 @@ export function AccountsPage({ onNavigate }: AccountsPageProps) {
                       </select>
                     </div>
                   </div>
+                  <div className="oauth-link" style={{ marginBottom: '16px' }}>
+                    <label>{t('accounts.tagModal.twoFactorLabel', '2FA Secret')}</label>
+                    <div className="oauth-link-row">
+                      <input
+                        type="text"
+                        value={oauthTwoFactorSecret}
+                        onChange={(e) => setOauthTwoFactorSecret(e.target.value)}
+                        placeholder={t('accounts.tagModal.twoFactorPlaceholder', 'Base32 secret (e.g. JBSWY3DPEHPK3PXP)')}
+                      />
+                    </div>
+                  </div>
                 </>
               )}
 
@@ -4804,6 +4844,7 @@ export function AccountsPage({ onNavigate }: AccountsPageProps) {
         initialTags={accounts.find((acc) => acc.id === showTagModal)?.tags || []}
         initialNotes={accounts.find((acc) => acc.id === showTagModal)?.notes ?? ''}
         initialProxy={accounts.find((acc) => acc.id === showTagModal)?.proxy_url ?? ''}
+        initialTwoFactorSecret={accounts.find((acc) => acc.id === showTagModal)?.two_factor_secret ?? ''}
         availableTags={availableTags}
         onClose={() => setShowTagModal(null)}
         onSave={handleSaveTags}

@@ -562,3 +562,184 @@
   background: rgba(255,255,255,0.05);
   color: #94a3b8;
 }
+
+/* ============================================
+   Account 2FA OTP Badge
+   ============================================ */
+.account-mfa-badge {
+  display: inline-flex;
+  align-items: center;
+  position: relative;
+  background: rgba(99, 102, 241, 0.08); /* Indigo tint */
+  border: 1px solid rgba(99, 102, 241, 0.16);
+  border-radius: 8px;
+  padding: 5px 10px;
+  gap: 8px;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
+  user-select: none;
+  align-self: flex-start;
+  margin-top: 2px;
+}
+
+.account-mfa-badge:hover {
+  background: rgba(99, 102, 241, 0.14);
+  border-color: rgba(99, 102, 241, 0.3);
+  box-shadow: 0 4px 12px rgba(99, 102, 241, 0.15);
+  transform: translateY(-1px);
+}
+
+.account-mfa-badge:active {
+  transform: translateY(0);
+}
+
+/* Glow Effect */
+.account-mfa-badge .badge-glow {
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(168, 85, 247, 0.15) 0%, transparent 60%);
+  opacity: 0;
+  transition: opacity 0.3s;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.account-mfa-badge:hover .badge-glow {
+  opacity: 1;
+}
+
+.account-mfa-badge .badge-content {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  z-index: 1;
+  width: 100%;
+}
+
+.account-mfa-badge .otp-code {
+  font-family: 'JetBrains Mono', 'Fira Code', monospace;
+  font-size: 13px;
+  font-weight: 700;
+  color: #4f46e5;
+  letter-spacing: 0.5px;
+}
+
+[data-theme="dark"] .account-mfa-badge .otp-code {
+  color: #a5b4fc;
+}
+
+.account-mfa-badge .copy-btn {
+  background: transparent;
+  border: none;
+  padding: 2px;
+  cursor: pointer;
+  color: #6b7280;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  transition: all 0.2s;
+}
+
+.account-mfa-badge .copy-btn:hover {
+  background: rgba(0, 0, 0, 0.05);
+  color: #4f46e5;
+}
+
+[data-theme="dark"] .account-mfa-badge .copy-btn:hover {
+  background: rgba(255, 255, 255, 0.08);
+  color: #a5b4fc;
+}
+
+.account-mfa-badge .copy-btn.copied {
+  color: #10b981;
+}
+
+/* Timer Circle */
+.account-mfa-badge .timer-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  margin-left: 2px;
+}
+
+.account-mfa-badge .timer-svg {
+  transform: rotate(-90deg);
+  width: 20px;
+  height: 20px;
+}
+
+.account-mfa-badge .timer-track {
+  fill: none;
+  stroke: rgba(0, 0, 0, 0.05);
+  stroke-width: 2;
+}
+
+[data-theme="dark"] .account-mfa-badge .timer-track {
+  stroke: rgba(255, 255, 255, 0.08);
+}
+
+.account-mfa-badge .timer-indicator {
+  fill: none;
+  stroke-width: 2;
+  stroke-linecap: round;
+  transition: stroke-dashoffset 1s linear, stroke 0.3s;
+}
+
+.account-mfa-badge .timer-text {
+  position: absolute;
+  font-size: 8px;
+  font-weight: 700;
+  color: #4f46e5;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+[data-theme="dark"] .account-mfa-badge .timer-text {
+  color: #a5b4fc;
+}
+
+/* Invalid State */
+.account-mfa-badge.invalid {
+  background: rgba(239, 68, 68, 0.08);
+  border-color: rgba(239, 68, 68, 0.2);
+  cursor: default;
+}
+
+.account-mfa-badge.invalid:hover {
+  transform: none;
+  box-shadow: none;
+  background: rgba(239, 68, 68, 0.08);
+  border-color: rgba(239, 68, 68, 0.2);
+}
+
+.account-mfa-badge .warning-icon {
+  color: #ef4444;
+}
+
+.account-mfa-badge .error-text {
+  font-size: 11px;
+  font-weight: 600;
+  color: #ef4444;
+}
+
+/* Dark mode specific tweaks for badge container */
+[data-theme="dark"] .account-mfa-badge {
+  background: rgba(168, 85, 247, 0.08);
+  border-color: rgba(168, 85, 247, 0.2);
+}
+
+[data-theme="dark"] .account-mfa-badge:hover {
+  background: rgba(168, 85, 247, 0.15);
+  border-color: rgba(168, 85, 247, 0.35);
+  box-shadow: 0 4px 12px rgba(168, 85, 247, 0.2);
+}
+

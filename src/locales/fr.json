@@ -1057,7 +1057,10 @@
       "globalDeleteHint": "Supprimer cette étiquette globalement",
       "globalRenameHint": "Renommer cette étiquette globalement",
       "renamePlaceholder": "Entrer nouveau tag",
-      "renamingGlobal": "Renommer globalement tous les enregistrements de balises existants :"
+      "renamingGlobal": "Renommer globalement tous les enregistrements de balises existants :",
+      "twoFactorLabel": "2FA Secret (Base32) [fr]",
+      "twoFactorPlaceholder": "Enter 2FA secret (Base32) [fr]",
+      "twoFactorHint": "Leave empty if not using two-factor authentication. [fr]"
     },
     "groupByTag": "Grouper par tag",
     "untagged": "Sans tag",

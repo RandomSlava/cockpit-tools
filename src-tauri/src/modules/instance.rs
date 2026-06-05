@@ -174,7 +174,11 @@ pub fn inject_account_to_profile(profile_dir: &Path, account_id: &str) -> Result
         &account.token.refresh_token,
         account.token.expiry_timestamp,
     )
-    .map(|_| ())
+    .map(|_| ())?;
+
+    // Also write to System Credential Manager so Antigravity IDE (2.0.0+) picks up the new credentials
+    let _ = modules::antigravity_credential::write_antigravity_system_credential(&account);
+    Ok(())
 }
 
 pub fn create_instance(params: CreateInstanceParams) -> Result<InstanceProfile, String> {

@@ -1057,7 +1057,10 @@
       "globalDeleteHint": "Bu etiketi genel olarak sil",
       "globalRenameHint": "Bu etiketi genel olarak yeniden adlandır",
       "renamePlaceholder": "Yeni etiket adı girin",
-      "renamingGlobal": "Mevcut tüm etiket kayıtları genel olarak yeniden adlandırılıyor:"
+      "renamingGlobal": "Mevcut tüm etiket kayıtları genel olarak yeniden adlandırılıyor:",
+      "twoFactorLabel": "2FA Secret (Base32) [tr]",
+      "twoFactorPlaceholder": "Enter 2FA secret (Base32) [tr]",
+      "twoFactorHint": "Leave empty if not using two-factor authentication. [tr]"
     },
     "groupByTag": "Etikete göre grupla",
     "untagged": "Etiketsiz",

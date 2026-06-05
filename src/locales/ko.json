@@ -1057,7 +1057,10 @@
       "globalDeleteHint": "Delete this tag globally",
       "globalRenameHint": "Rename this tag globally",
       "renamePlaceholder": "새 이름을 입력합니다.",
-      "renamingGlobal": "Globally renaming all existing tag records:"
+      "renamingGlobal": "Globally renaming all existing tag records:",
+      "twoFactorLabel": "2FA Secret (Base32) [ko]",
+      "twoFactorPlaceholder": "Enter 2FA secret (Base32) [ko]",
+      "twoFactorHint": "Leave empty if not using two-factor authentication. [ko]"
     },
     "groupByTag": "태그별 그룹",
     "untagged": "태그 없음",

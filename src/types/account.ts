@@ -13,6 +13,7 @@ export interface Account {
     disabled_at?: number;
     protected_models?: string[];
     proxy_url?: string;
+    two_factor_secret?: string;
     created_at: number;
     last_used: number;
 }

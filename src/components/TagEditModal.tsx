@@ -10,9 +10,10 @@ interface TagEditModalProps {
   initialTags: string[];
   initialNotes?: string;
   initialProxy?: string;
+  initialTwoFactorSecret?: string;
   availableTags?: string[];
   onClose: () => void;
-  onSave: (tags: string[], notes?: string, proxy?: string) => void | Promise<void>;
+  onSave: (tags: string[], notes?: string, proxy?: string, twoFactorSecret?: string) => void | Promise<void>;
 }
 
 const MAX_TAGS = 10;
@@ -34,12 +35,13 @@ const normalizeTagList = (tags: string[]) => {
   return result;
 };
 
-export const TagEditModal = ({ isOpen, initialTags, initialNotes, initialProxy, availableTags = [], onClose, onSave }: TagEditModalProps) => {
+export const TagEditModal = ({ isOpen, initialTags, initialNotes, initialProxy, initialTwoFactorSecret, availableTags = [], onClose, onSave }: TagEditModalProps) => {
   const { t } = useTranslation();
   useEscClose(isOpen, onClose);
   const [tags, setTags] = useState<string[]>([]);
   const [notes, setNotes] = useState('');
   const [proxy, setProxy] = useState('');
+  const [twoFactorSecret, setTwoFactorSecret] = useState('');
   const [inputValue, setInputValue] = useState('');
   const [error, setError] = useState<string>('');
   const [saving, setSaving] = useState(false);
@@ -50,10 +52,11 @@ export const TagEditModal = ({ isOpen, initialTags, initialNotes, initialProxy, 
     setTags(normalizeTagList(initialTags));
     setNotes(initialNotes ?? '');
     setProxy(initialProxy ?? '');
+    setTwoFactorSecret(initialTwoFactorSecret ?? '');
     setInputValue('');
     setError('');
     setGlobalRenamingTag(null);
-  }, [initialNotes, initialTags, initialProxy, isOpen]);
+  }, [initialNotes, initialTags, initialProxy, initialTwoFactorSecret, isOpen]);
 
   const remaining = useMemo(() => MAX_TAGS - tags.length, [tags.length]);
   const normalizedAvailableTags = useMemo(() => normalizeTagList(availableTags), [availableTags]);
@@ -139,7 +142,7 @@ export const TagEditModal = ({ isOpen, initialTags, initialNotes, initialProxy, 
     }
     setSaving(true);
     try {
-      await onSave(nextTags, notes.trim(), proxy.trim());
+      await onSave(nextTags, notes.trim(), proxy.trim(), twoFactorSecret.trim());
       onClose();
     } finally {
       setSaving(false);
@@ -250,6 +253,29 @@ export const TagEditModal = ({ isOpen, initialTags, initialNotes, initialProxy, 
             />
             <div className="tag-edit-hint" style={{ marginTop: '-4px' }}>
               {t('accounts.tagModal.proxyHint', 'Individual proxy for this account. Will be used instead of the global proxy when launching the IDE.')}
+            </div>
+          </div>
+          <div className="tag-notes-section">
+            <div className="tag-notes-header">
+              <span className="tag-notes-label">{t('accounts.tagModal.twoFactorLabel', '2FA Secret (Base32)')}</span>
+            </div>
+            <input
+              type="text"
+              style={{
+                padding: '10px 12px',
+                borderRadius: '12px',
+                border: '1px solid rgba(148, 163, 184, 0.4)',
+                background: 'var(--bg-card)',
+                color: 'var(--text-primary)',
+                fontSize: '13px',
+                outline: 'none',
+              }}
+              value={twoFactorSecret}
+              onChange={(e) => setTwoFactorSecret(e.target.value)}
+              placeholder={t('accounts.tagModal.twoFactorPlaceholder', 'Enter 2FA secret (Base32)')}
+            />
+            <div className="tag-edit-hint" style={{ marginTop: '-4px' }}>
+              {t('accounts.tagModal.twoFactorHint', 'Leave empty if not using two-factor authentication.')}
             </div>
           </div>
           <div className="tag-list">

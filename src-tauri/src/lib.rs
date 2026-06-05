@@ -336,6 +336,7 @@ pub fn run() {
             commands::account::update_account_tags,
             commands::account::update_account_notes,
             commands::account::update_account_proxy,
+            commands::account::update_account_two_factor_secret,
             commands::account::load_account_groups,
             commands::account::save_account_groups,
             commands::account::sync_current_from_client,

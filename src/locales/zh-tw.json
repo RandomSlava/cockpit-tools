@@ -1057,7 +1057,10 @@
       "globalDeleteHint": "全域刪除此標籤",
       "globalRenameHint": "全域重新命名此標籤",
       "renamePlaceholder": "輸入新的標籤名稱",
-      "renamingGlobal": "正在全域重新命名已存在標籤所有帳號記錄："
+      "renamingGlobal": "正在全域重新命名已存在標籤所有帳號記錄：",
+      "twoFactorLabel": "2FA 金鑰 (Base32)",
+      "twoFactorPlaceholder": "輸入 2FA 金鑰 (Base32)",
+      "twoFactorHint": "如果不使用雙重身份驗證，請留空。"
     },
     "groupByTag": "依標籤分組",
     "untagged": "未標記",

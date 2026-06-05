@@ -1057,7 +1057,10 @@
       "globalDeleteHint": "Eliminar esta etiqueta globalmente",
       "globalRenameHint": "Cambiar el nombre de esta etiqueta a nivel mundial",
       "renamePlaceholder": "Introduzca una nueva etiqueta",
-      "renamingGlobal": "Renombrar globalmente todos los registros de etiquetas existentes:"
+      "renamingGlobal": "Renombrar globalmente todos los registros de etiquetas existentes:",
+      "twoFactorLabel": "2FA Secret (Base32) [es]",
+      "twoFactorPlaceholder": "Enter 2FA secret (Base32) [es]",
+      "twoFactorHint": "Leave empty if not using two-factor authentication. [es]"
     },
     "groupByTag": "Agrupar por etiqueta",
     "untagged": "Sin etiqueta",

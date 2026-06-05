@@ -38,6 +38,9 @@ pub struct Account {
     /// Per-account HTTP proxy URL (e.g. "http://user:pass@host:port")
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub proxy_url: Option<String>,
+    /// 2FA 密钥 (Base32)
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub two_factor_secret: Option<String>,
     pub created_at: i64,
     pub last_used: i64,
 }
@@ -65,6 +68,7 @@ impl Account {
             quota_error: None,
             usage_updated_at: None,
             proxy_url: None,
+            two_factor_secret: None,
             created_at: now,
             last_used: now,
         }

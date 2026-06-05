@@ -1057,7 +1057,10 @@
       "globalDeleteHint": "このタグをグローバルに削除する",
       "globalRenameHint": "このタグの名前をグローバルに変更する",
       "renamePlaceholder": "新しい名前を入力する",
-      "renamingGlobal": "グローバルに既存のすべてのタグレコードの名前を変更する："
+      "renamingGlobal": "グローバルに既存のすべてのタグレコードの名前を変更する：",
+      "twoFactorLabel": "2FA Secret (Base32) [ja]",
+      "twoFactorPlaceholder": "Enter 2FA secret (Base32) [ja]",
+      "twoFactorHint": "Leave empty if not using two-factor authentication. [ja]"
     },
     "groupByTag": "タグでグループ化",
     "untagged": "タグなし",

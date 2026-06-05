@@ -175,6 +175,11 @@ export async function updateAccountProxy(accountId: string, proxyUrl: string | n
     return await invoke('update_account_proxy', { accountId, proxyUrl });
 }
 
+export async function updateAccountTwoFactorSecret(accountId: string, twoFactorSecret: string | null): Promise<Account> {
+    return await invoke('update_account_two_factor_secret', { accountId, twoFactorSecret });
+}
+
+
 export async function syncFromExtension(): Promise<number> {
     return await invoke('sync_from_extension');
 }

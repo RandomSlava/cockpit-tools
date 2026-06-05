@@ -1103,7 +1103,10 @@
       "globalDeleteHint": "حذف هذه العلامة عالميًا",
       "globalRenameHint": "إعادة تسمية هذه العلامة عالميًا",
       "renamePlaceholder": "أدخل اسم علامة تبويب",
-      "renamingGlobal": "إعادة تسمية جميع سجلات العلامات الموجودة عالميًا:"
+      "renamingGlobal": "إعادة تسمية جميع سجلات العلامات الموجودة عالميًا:",
+      "twoFactorLabel": "2FA Secret (Base32) [ar]",
+      "twoFactorPlaceholder": "Enter 2FA secret (Base32) [ar]",
+      "twoFactorHint": "Leave empty if not using two-factor authentication. [ar]"
     },
     "groupByTag": "تجميع حسب العلامة",
     "untagged": "غير موسوم",

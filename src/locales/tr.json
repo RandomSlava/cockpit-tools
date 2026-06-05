@@ -1357,6 +1357,7 @@
     "fingerprint": {
       "title": "Parmak İzini Seç",
       "desc": "<1>{{email}}</1> hesabı için parmak izi seçin",
+      "auto": "Otomatik cihaz parmak izi oluştur",
       "original": "Orijinal Parmak İzi",
       "new": "Yeni Parmak İzi Ekle",
       "bind": "Bağlamayı Onayla",

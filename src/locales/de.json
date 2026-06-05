@@ -1357,6 +1357,7 @@
     "fingerprint": {
       "title": "Fingerabdruck wählen",
       "desc": "Fingerabdruck für Konto <1>{{email}}</1> auswählen",
+      "auto": "Fingerabdruck automatisch generieren",
       "original": "Originaler Fingerabdruck",
       "new": "Neuen Fingerabdruck hinzufügen",
       "bind": "Bindung bestätigen",

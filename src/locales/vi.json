@@ -1357,6 +1357,7 @@
     "fingerprint": {
       "title": "Chọn vân tay",
       "desc": "Chọn vân tay cho tài khoản <1>{{email}}</1>",
+      "auto": "Tự động tạo dấu vân tay thiết bị",
       "original": "Vân tay gốc",
       "new": "Thêm vân tay mới",
       "bind": "Xác nhận liên kết",

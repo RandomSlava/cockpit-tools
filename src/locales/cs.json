@@ -1357,6 +1357,7 @@
     "fingerprint": {
       "title": "Vybrat otisk",
       "desc": "Vyberte otisk pro účet <1>{{email}}</1>",
+      "auto": "Automaticky generovat otisk",
       "original": "Původní otisk",
       "new": "Přidat nový otisk",
       "bind": "Potvrdit vazbu",

@@ -1403,6 +1403,7 @@
     "fingerprint": {
       "title": "Pilih Sidik Jari",
       "desc": "Pilih sidik jari untuk akun <1>{{email}}</1>",
+      "auto": "Hasilkan sidik jari otomatis",
       "original": "Sidik Jari Asli",
       "new": "Tambah Sidik Jari Baru",
       "bind": "Konfirmasi Tautan",

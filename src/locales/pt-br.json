@@ -1357,6 +1357,7 @@
     "fingerprint": {
       "title": "Selecionar Impressão",
       "desc": "Selecionar impressão para a conta <1>{{email}}</1>",
+      "auto": "Gerar impressão digital automaticamente",
       "original": "Impressão Original",
       "new": "Adicionar Nova Impressão",
       "bind": "Confirmar Vinculação",

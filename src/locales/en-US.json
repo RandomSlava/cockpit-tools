@@ -1403,6 +1403,7 @@
     "fingerprint": {
       "title": "Select Fingerprint",
       "desc": "Select fingerprint for account <1>{{email}}</1>",
+      "auto": "Auto-generate new fingerprint",
       "original": "Original Fingerprint",
       "new": "Add New Fingerprint",
       "bind": "Confirm Bind",

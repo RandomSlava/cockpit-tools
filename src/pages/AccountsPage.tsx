@@ -3805,7 +3805,7 @@ export function AccountsPage({ onNavigate }: AccountsPageProps) {
                         value={oauthFpId}
                         onChange={(e) => setOauthFpId(e.target.value)}
                       >
-                        <option value="auto">{t('accounts.fingerprint.auto', 'Автогенерация нового отпечатка')}</option>
+                        <option value="auto">{t('modals.fingerprint.auto', 'Автогенерация нового отпечатка')}</option>
                         <option value="original">{t('modals.fingerprint.original', '使用本机原始指纹')}</option>
                         {fingerprints.map((fp) => (
                           <option key={fp.id} value={fp.id}>

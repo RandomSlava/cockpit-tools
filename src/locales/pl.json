@@ -1357,6 +1357,7 @@
     "fingerprint": {
       "title": "Wybierz odcisk palca",
       "desc": "Wybierz odcisk palca dla konta <1>{{email}}</1>",
+      "auto": "Automatycznie generuj odcisk palca",
       "original": "Oryginalny odcisk palca",
       "new": "Dodaj nowy odcisk palca",
       "bind": "Potwierdź powiązanie",

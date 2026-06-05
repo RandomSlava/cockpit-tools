@@ -1357,6 +1357,7 @@
     "fingerprint": {
       "title": "Seleccionar Huella",
       "desc": "Selecciona huella para la cuenta <1>{{email}}</1>",
+      "auto": "Generar huella digital automáticamente",
       "original": "Huella Original",
       "new": "Añadir Nueva Huella",
       "bind": "Confirmar Vinculación",

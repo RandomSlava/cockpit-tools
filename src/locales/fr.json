@@ -1357,6 +1357,7 @@
     "fingerprint": {
       "title": "Sélectionner empreinte",
       "desc": "Sélectionnez l'empreinte pour le compte <1>{{email}}</1>",
+      "auto": "Génération automatique d'empreinte",
       "original": "Empreinte originale",
       "new": "Ajouter nouvelle empreinte",
       "bind": "Confirmer liaison",

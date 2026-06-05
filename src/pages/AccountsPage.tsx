@@ -1222,7 +1222,7 @@ export function AccountsPage({ onNavigate }: AccountsPageProps) {
           }
           if (oauthFpIdRef.current === 'auto') {
             try {
-              const fpName = `fp_${newAccount.email}`
+              const fpName = `fp_${newAccount.email || newAccount.id}`
               const fp = await accountService.generateNewFingerprint(fpName)
               await accountService.bindAccountFingerprint(newAccount.id, fp.id)
               newAccount.fingerprint_id = fp.id
@@ -1482,7 +1482,7 @@ export function AccountsPage({ onNavigate }: AccountsPageProps) {
         }
         if (oauthFpId === 'auto') {
           try {
-            const fpName = `fp_${account.email}`
+            const fpName = `fp_${account.email || account.id}`
             const fp = await accountService.generateNewFingerprint(fpName)
             await accountService.bindAccountFingerprint(account.id, fp.id)
           } catch (err) {
@@ -1514,7 +1514,7 @@ export function AccountsPage({ onNavigate }: AccountsPageProps) {
         }
         if (oauthFpId === 'auto') {
           try {
-            const fpName = `fp_${account.email}`
+            const fpName = `fp_${account.email || account.id}`
             const fp = await accountService.generateNewFingerprint(fpName)
             await accountService.bindAccountFingerprint(account.id, fp.id)
           } catch (err) {
@@ -1936,7 +1936,7 @@ export function AccountsPage({ onNavigate }: AccountsPageProps) {
         }
         if (oauthFpId === 'auto') {
           try {
-            const fpName = `fp_${account.email}`
+            const fpName = `fp_${account.email || account.id}`
             const fp = await accountService.generateNewFingerprint(fpName)
             await accountService.bindAccountFingerprint(account.id, fp.id)
             account.fingerprint_id = fp.id
